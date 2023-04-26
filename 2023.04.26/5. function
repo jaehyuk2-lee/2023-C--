@@ -1,0 +1,41 @@
+//함수
+
+#include <iostream>
+
+void swap(int &a, int &b){
+    int tmp = a;
+    a = b;
+    b = tmp;
+}
+
+void dswap(double &a, double &b){
+    double tmp=a;
+    a=b;
+    b=tmp;
+}
+
+void pswap(int *(&a), int *(&b)){
+    int *tmp=a;
+    a=b;
+    b=tmp;
+    
+}
+
+int main()
+{
+    int a=20, b=30;
+    double da=2.222, db=3.3333;
+    int *pa=&a, *pb=&b;
+    
+    std::cout<<"a : "<<a<<" b : "<<b<<std::endl;
+    swap(a,b);
+    std::cout<<"a : "<<a<<" b : "<<b<<std::endl;
+    
+    std::cout<<"da : "<<da<<" db : "<<db<<std::endl;
+    dswap(da,db);
+    std::cout<<"da : "<<da<<" db : "<<db<<std::endl;
+    
+    std::cout<<"pa : "<<pa<<" pb : "<<pb<<std::endl;
+    pswap(pa,pb);
+    std::cout<<"pa : "<<pa<<" pb : "<<pb<<std::endl;
+}
