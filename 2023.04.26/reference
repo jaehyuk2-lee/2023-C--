@@ -1,0 +1,38 @@
+#include <iostream>
+
+using namespace std;
+
+void swap(int &a, int &b){
+    int tmp=a;
+    a=b;
+    b=tmp;
+}
+
+//call by reference CPP
+
+int main()
+{
+    int a = 10;
+    int *p=&a; //p에는 a의 주소값 대입
+    *p=15; //p에 들어가 있는 주소에 있는 변수를 15로 변경
+    cout<<a<<endl;
+    
+    int &r=a; //&는 주소가 아니라 참조를 의미: 참조되는 객체의 별칭
+    r=20;
+    cout<<a<<endl;
+    
+    int x(5), y(10);
+    cout<<"x = "<<x<<' ';
+    cout<<"y = "<<y<<' '<<endl;
+    swap(x,y);
+    cout<<"x = "<<x<<' ';
+    cout<<"y = "<<y<<' ';
+    
+    //r-value: 등호를 사이에 두고 수정할 수 없는 오른쪽 변수
+    //&&r : r-value 참조
+
+    int i(5);
+    int &r1=i; //l-value 참조, i는 수정할 수 있는 변수
+    int &&r2=3; //r-value 참조, 3은 그 자체로 변경 불가
+    int &&r3=a*a; //r-value 참조, 식에는 어떤 수를 대입 할 수 없음 
+}
