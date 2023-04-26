@@ -1,0 +1,28 @@
+#include <iostream>
+
+using namespace std;
+
+int inventory[64] ={0};
+int score = 0;
+
+
+void getItem(int itemId, int cnt=1, int sc=0){
+    inventory[itemId]+=cnt;
+    score += sc;
+} /*매개변수에 기본 값을 지정해 주면
+   입력 받지 않을 때 기본값으로 함수를 실행한다.*/
+    
+int main()
+{
+    getItem(6, 5);
+    getItem(3, 2);
+    getItem(3);
+    getItem(11, 34, 70000);
+    
+    cout<<score<<endl;
+    
+    for(int i=0; i<16; i++){
+        cout << inventory[i] << ' ';
+    }
+    cout<<endl;
+}
