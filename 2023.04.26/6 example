@@ -1,0 +1,67 @@
+//이름 점수 입 출력
+
+/*
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+int main()
+{
+    string name;
+    int score;
+    
+    cout<<"이름 입력 : ";
+    cin>>name;
+    cout<<"점수 입력 : ";
+    cin>>score;
+    cout<<name<<"님의 점수는 "<<score<<"점 입니다."<<endl;
+
+    return 0;
+}
+*/
+
+//범위 기반 for문을 사용하여 이차원 배열 출력
+//C와 다름
+/*
+#include <iostream>
+
+using namespace std;
+
+int main() {
+    int arr[2][3] = {{1,2,3},{4,5,6}};
+    
+    for(int n : arr[0]){
+        cout<<n<<' ';
+    }
+    cout<<endl;
+    for(int n: arr[1]){
+        cout<<n<<' '
+    }
+}
+*/
+//모범 답안
+#include <iostream>
+
+using namespace std;
+
+int main() {
+    int arr[2][3] = {{1,2,3},{4,5,6}};
+    
+    for(int(&ln)[3]:arr){
+        for(int&col : ln){
+            cout<<col<<' ';
+        }
+        cout<<endl;
+    }
+    
+    cout<<endl;
+    
+//for문 식 구성    
+    for(int (*ln)[3]=arr; ln <arr + 2; ln++){
+        for(int *col = *ln; col<*ln+3; col++){
+            cout<<*col<<' ';
+        }
+        cout<<endl;
+    }
+}
