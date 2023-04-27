@@ -1,0 +1,52 @@
+//namespace overlap
+#include <iostream>
+
+using namespace std;
+
+int n;
+void set(){
+    n=10;
+}
+
+/*namespace A {
+    int n;
+    void set(){
+        n=20;
+    }
+    
+    namespace B{
+        void set(){
+            n=30;
+        }
+        int n; //이 여기있으면 컴파일러가 n=30;을 수행하기 전 이전에 선언된 n을 찾는다
+        
+        //전처리기를 사용 하면 이를 방지 할 수있다 ~> 결과 10 30 0 
+    }
+}*/
+namespace A {
+    void set();
+    
+    namespace B{
+        void set();
+        int n;
+    }
+    int n;
+}
+
+int main(){
+    set();
+    A::set();
+    A::B::set();
+    
+    cout<<n<<endl;
+    cout<<A::n<<endl;
+    cout<<A::B::n<<endl;
+}
+
+void A::set(){
+    n=20;
+}
+
+void A::B::set(){
+    n=30;
+}
