@@ -1,0 +1,32 @@
+//생성자: 객체가 생성될 때 자동으로 호출 되는 함수
+//소멸자: 객체가 소멸될 때 자동으로 호출 되는 함수
+
+#include <iostream>
+
+using namespace std;
+
+class A {
+public:
+    A(){ //생성자 (호출하지 않아도 형식적으로 자동으로 생성 내용X)
+       cout << "생성자 호출" << endl; 
+    }
+    
+    ~A(){ //소멸자 (호출하지 않아도 형식적으로 자동으로 생성 내용X)
+        cout << "소멸자 호출" << endl;
+    }
+};
+
+A globalObj; //메인 시작전에 선언되면서 생성자 호출
+
+void testLocalObj(){
+    cout << "테스트함수 시작" <<endl;
+    A LocalObj;//생성자 호출
+    cout << "테스트함수 종료" <<endl;
+};//소멸자 호출
+
+int main(){
+    cout << "main 시작" << endl;
+    testLocalObj();
+    cout << "main 종료" << endl;
+}
+//main함수가 종료 되면서 소멸하면서 소멸자 호출
