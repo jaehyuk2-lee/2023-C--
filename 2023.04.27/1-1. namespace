@@ -1,0 +1,50 @@
+#include <iostream>
+
+using namespace std;
+
+int n;//전역 변수
+
+void set(){
+    n=10;
+}//n이 어떤 namespace에도 속해 있지 않기 때문에 :: 앞이 공백
+
+namespace A{
+    int n;
+    void set();
+}
+
+namespace B{
+    int n;
+    void set();
+}
+
+void setA(){
+    A::n=30;
+}//A namespace 밖에 속해 있으므로 표시 해줘야 함
+
+int main()
+{
+    ::set();
+    A::set();
+    B::set();
+    
+    cout << n  << endl;
+    cout << A::n << endl;
+    cout << B::n << endl;
+    
+    setA();
+    cout << A::n << endl;
+    
+}
+
+void A::set(){
+        A::n=20; //A namespace에 속해 있는 n 에는 20 할당
+    }
+
+namespace B {
+    void set(){
+        n=30; //B namespace에 속해 있는 n 에는 30 할당
+        ::n=20; //전역 n 설정
+    }//B namespace 안에 속해 있기 때문에 B::n으로 쓰지 않아도 괜찮다.
+} //꼭 namespace 한번에 정의하지 않아도 된다.
+
