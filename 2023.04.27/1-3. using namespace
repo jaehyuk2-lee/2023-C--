@@ -1,0 +1,35 @@
+#include <iostream>
+
+int n;
+
+void set(){
+    n=10;
+}
+
+namespace A {
+    int n;
+    void set(){
+        n=20;
+    }
+    
+    namespace B{
+        int n;
+        void set(){
+            n=30;
+            
+        }
+    }
+}
+
+int main(){
+    using namespace std; //main함수 내에서만 std 사용
+    using namespace A;
+    
+    ::set(); //전역선언 n
+    A::set(); //전역에 선언된 set 인지 A내에 선언된 set인지 구분 불가
+    B::set(); //A namespace를 사용하기 때문에 앞에 생략 가능 std::cout -> cout 처럼
+    
+    cout<<::n<<endl;
+    cout<<B::n<<endl;
+    cout<<A::n<<endl;
+}
