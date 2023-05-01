@@ -31,7 +31,7 @@ int main() {
     Color blue(0,0,1);
     Color red(1,0,0);
     Color purple = Color::MixColors(red, blue);//namespace처럼 사용
-    //Color purple = blue.MixColors(red, blue); 이거도 됨
+    //Color purple = blue.MixColors(red, blue); 이거도 됨 Color blue 안에 MixColor가 정의되어 있기 때문
     
     cout << "r=" << purple.GetR()<< " g=" << purple.GetG()<< " b=" << purple.GetB() << endl;
 }
