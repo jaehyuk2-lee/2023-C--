@@ -12,11 +12,12 @@ public:
     float GetR() {return r;}
     float GetG() {return g;}
     float GetB() {return b;}
+    //r,g,b 전부 private 선언이라 사용
     
     static Color MixColors (Color a, Color b) {
     return Color((a.r+b.r)/2, (a.g+b.g)/2, (a.b+b.b)/2);
     }//정적 선언 ~> class 안으로 넣었음, private에 접근 할 수 있음
-     //따라서 선언한 Get함수 사용 안해도 됨
+     //따라서 선언한 Get~함수 사용 안해도 됨
     
 private:
     float r;
