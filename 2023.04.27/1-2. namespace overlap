@@ -29,7 +29,7 @@ namespace A {
         void set();
         int n;
     }
-    int n; //요 n의 선언 위치가 상관없음 왜 why 전처리문으로 선언 됐기 
+    int n; //요 n의 선언 위치가 상관없음, 왜 why: 전처리문으로 선언 됐기 때문
 }
 
 int main(){
