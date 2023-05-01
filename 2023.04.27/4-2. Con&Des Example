@@ -1,3 +1,4 @@
+//허수 생성 프로그램
 #include <iostream>
 
 using namespace std;
@@ -5,8 +6,8 @@ using namespace std;
 class Complex {
 public:
     Complex(){
-        real=0;
-        imag=0;
+        real=0; //실수
+        imag=0; //허수
     }
     Complex(double real_, double imag_){
         real=real_;
