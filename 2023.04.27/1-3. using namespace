@@ -26,7 +26,7 @@ int main(){
     using namespace A;
     
     ::set(); //전역선언 n
-    A::set(); //전역에 선언된 set 인지 A내에 선언된 set인지 구분 불가
+    A::set(); //전역에 선언된 set 인지 A내에 선언된 set인지 구분 불가 (따라서 namespace A 를 썼어도 A::붙여줘야 함)
     B::set(); //A namespace를 사용하기 때문에 앞에 생략 가능 std::cout -> cout 처럼
     
     cout<<::n<<endl;
