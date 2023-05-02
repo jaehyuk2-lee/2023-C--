@@ -1,0 +1,45 @@
+// case 1. 매개변수의 상수화 (모든 함수)
+// case 2. method의 상수화 (멤버 method)
+
+#include <iostream>
+
+using namespace std;
+
+class Account {
+public:
+    Account():money(0){}
+    Account(int money) : money(money) {}
+    
+    void Deposit(const int d){
+        /*d=money; /*1.원래 입력 받은 변수가 바뀌어 버림 ~> 문제 발생
+                   const로 상수화해서 에러 확인*/
+        money+=d;
+        cout << d << "원 예금" << endl;
+    }
+    
+    void Draw (int d){
+        if(money>d) {
+            money -=d;
+            cout << d << "원 인출" << endl;
+        }
+    }
+    
+    int View() const {
+        /*money++; /*2.잔고 확인 마다 1원 추가 ~> 문제 발생
+                     const로 상수화 해서 에러 확인*/
+        return money;
+    }
+    //const int View() 로 선언되면 return 값이 상수라는 의미
+    
+private:
+    int money;
+};
+
+int main(){
+    Account P(200);
+    
+    P.Deposit(100);
+    P.Draw(20);
+    
+    cout << P.View() << endl;
+}
