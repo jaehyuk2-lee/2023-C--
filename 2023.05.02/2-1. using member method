@@ -18,7 +18,7 @@ public:
     
     Vector Add(Vector b){
         return Vector(x+b.x, y+b.y);
-    }//case 2 새로운 백터를 선언 해 자기와 추가적인 벡터를 더한다
+    }//case 2 새로운 백터를 선언 해 자기와 추가적인 벡터를 더한다 (동적)
     
     //벡터 곱
     static int Multiply(Vector a, Vector b) {
@@ -26,7 +26,7 @@ public:
     } //case 1
     int Multiply(Vector b){
         return x*b.x+y*b.y;
-    }//case 2 새로운 백터를 선언 해 자기와 추가적인 벡터를 곱한다
+    }//case 2 새로운 백터를 선언 해 자기와 추가적인 벡터를 곱한다 (동적)
     
 private:
     float x, y;
