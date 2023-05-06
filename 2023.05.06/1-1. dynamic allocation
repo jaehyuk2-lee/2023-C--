@@ -1,0 +1,20 @@
+//정적 할당: int a;
+//동적 할당: 프로그램 실행중 메모리에 원하는 크기 할당 & 해제
+
+#include <iostream>
+
+using namespace std;
+
+int main(){
+    int *a = new int (5); //new 가 int를 저장하는 공간을 포인터에 할당
+    
+    cout << a << endl;
+    cout << *a << endl;
+    
+    *a = 10;
+    
+    cout << a << endl;
+    cout << *a << endl;
+    
+    delete a; //a에 할당 한 주소 해제, 다른 코드에서 사용하도록 공간 확보
+}
