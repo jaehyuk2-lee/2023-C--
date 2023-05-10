@@ -15,6 +15,10 @@ public:
         cout << "Item(int ,string)" << endl;
     }
     
+    void print(){
+        cout << num << ":" << name << endl;
+    }
+    
 private:
     int num;
     string name;
@@ -29,10 +33,18 @@ int main(){
     Item i4 = (Item)4; //변환생성자가 int를 Item으로 변경 (명시적 변환) (Item)을 써줌
 
     Item i5(5);
-    i5 = (string)"tree"; //int 선언하고 sting 추가
+    i5 = (string)"tree"; //일단 int로 만들고 string으로 바꾸기
     
     Item i6(1,"grass");
     
     Item i7 = {2,"dirt"};
     i7={2,"dirt"};
+    
+    i1.print();
+    i2.print();
+    i3.print();
+    i4.print();
+    i5.print();
+    i6.print();
+    i7.print();
 }
