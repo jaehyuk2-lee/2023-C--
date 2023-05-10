@@ -1,0 +1,100 @@
+//온라인 컴파일러에선 임시객체 사용 안해서 확인 안되는 것 같음
+//이동 대입 연산자는 확인 가능 (있고 없고 차이 유무 있음)
+#include <iostream>
+#include <string.h>
+
+using namespace std;
+
+class String {
+public:
+	String() {
+		cout << "String() : " << this << endl;
+		strData = NULL;
+		len = 0;
+	}
+	String(const char *str) {
+		cout << "String(const char*) : " << this << endl;
+		len = strlen(str);
+		alloc(len);
+		strcpy(strData, str);
+	}
+	String(const String &rhs) {
+		cout << "String(const String&) : " << this << endl;
+		len = rhs.len;
+		alloc(len);
+		strcpy(strData, rhs.strData);
+	}
+	
+	String(String &&rhs){
+	    cout << "String(String&&) : " << this << endl;
+	    len = rhs.len;
+	    strData=rhs.strData;// 얕은 복사
+	    rhs.strData=NULL; // 임시객체가 문자열을 가르키기 때문에 원래 함수는 하지 않아도 된다.
+	} //이동생성자: 임시객체가 원래 문자열을 가리키도록 한다.
+
+	~String() {
+		cout << "~String() : " << this << endl;
+		release();
+		strData = NULL;
+	}
+
+	String &operator=(const String &rhs) {
+		cout << "String &operator=(const String&) : " << this << endl;
+		if (this != &rhs) {
+			release();
+			len = rhs.len;
+			alloc(len);
+			strcpy(strData, rhs.strData);
+		}
+		return *this;
+	}
+	
+	String &operator=(String&&rhs) {
+	    cout << "String &operator=(String&&) : " << this << endl;
+	    len = rhs.len;
+	    strData=rhs.strData;
+	    rhs.strData=NULL;
+	    return *this; //연쇄적 등호 사용을 위해 사용
+	} /*이동 대입 연산자 : 얕은 복사로 바로 문자열을 가르키게 되기 때문에
+	    쓸데없는 깊은복사가 발생하지 않는다.*/
+
+	char* GetStrData() const {
+		return strData;
+	}
+	int GetLen() const {
+		return len;
+	}
+	void SetStrData(const char *str) {
+		cout << "void SetStrData(const char*) : " << this << ", " << str << endl;
+		len = strlen(str);
+		alloc(len);
+		strcpy(strData, str);
+	}
+
+private:
+	void alloc(int len) {
+		strData = new char[len + 1];
+		cout << "strData allocated : " << (void*)strData << endl;
+	}
+	void release() {
+		delete[] strData;
+		if (strData) cout << "strData released : " << (void*)strData << endl;
+	}
+
+	char *strData;
+	int len;
+};
+
+String getName() {
+	cout << "===== 2 =====" << endl;
+	String res("Doodle");
+	cout << "===== 3 =====" << endl;
+    return res;
+}
+
+int main() {
+	String a;
+	cout << "===== 1 =====" << endl;
+	a = getName();
+	cout << "===== 4 =====" << endl;
+}
