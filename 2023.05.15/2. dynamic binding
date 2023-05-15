@@ -1,0 +1,73 @@
+//dynamic binding : 조건에 따라 메서드 다르게 실행
+
+#include <iostream>
+
+using namespace std;
+
+class Weapon {
+public:
+    Weapon(int power) : power(power) {
+        cout << "Weapon(int)" << endl;
+    }
+    
+    virtual void Use() {
+        cout << "Weapon::Use()" << endl;
+    }
+    //가상 함수 : 쓸수도 있고 안쓸수도 있다.
+    //실행하는 시점에서 어떤 함수를 실행할지 결정하도록 함
+    
+protected:
+    int power;
+};
+
+class Sword : public Weapon {
+public:
+    Sword(int power) : Weapon(power) {
+        cout << "Sword(int)" << endl;
+    }
+    
+    void Use() {
+        cout << "Sword::Use()" << endl;
+        Swing();
+    }
+    
+private:
+    void Swing() {
+        cout << "Swing sword." << endl;
+    }
+};
+
+class Wand : public Weapon {
+public:
+    Wand(int power, int cost) : Weapon(power), cost(cost){
+        cout << "Wand(int, int)" << endl;
+    }
+    
+    void Use() {
+        cout << "Wand::Use()" << endl;
+        Cast();
+    }
+    
+private:
+    int cost;
+    void Cast(){
+        cout << "Cast magic." << endl;
+    }
+};
+
+int main() {
+    Sword mySword(10);
+    Wand myWand(15, 7);
+    
+    mySword.Use();
+    myWand.Use();
+    
+    Weapon *currentWeapon;
+    
+    currentWeapon = &mySword;
+    currentWeapon->Use();
+    currentWeapon = &myWand;
+    currentWeapon->Use();
+    //부모 포인터가 자식 클래스를 가르킬 때 자식 클래스의 메서드가 실행 된다. (동적바인딩)
+    //부모 클래스에 가상 함수 설정 후 오버라이딩한 함수 자체가 실행된다.
+}
