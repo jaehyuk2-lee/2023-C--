@@ -1,0 +1,56 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+
+class shot{
+public:
+    shot(int distance, int damage){
+        this->distance = distance;
+        this->damage = damage;
+    }
+    
+    int GetDistance() const {return distance;}
+    int GetDamage() const {return damage;}
+
+private:
+    int distance;
+    int damage;
+};
+
+class ShotGun : public shot{
+public:
+    ShotGun(int distance, int damage, bool Back) : shot(distance, damage){
+        this->Back = Back;
+    }
+    
+    bool GetBack() const {return Back;}
+    double Rdamage() {return GetDamage()/GetDistance() + GetBack()*500;}
+    
+private:
+    bool Back;
+};
+
+class Riffle : public shot{
+public:
+    Riffle(int distance, int damage, int breath) : shot(distance, damage){
+        this->breath = breath;
+    }
+    
+    int GetBreath() const {return breath;}
+    double Rdamage() {return GetDamage()*GetDistance() - GetBreath()*100;}
+
+private:
+    int breath;
+};
+
+int main(){
+    ShotGun *S_skill1 = new ShotGun(1, 1000, 1);
+    ShotGun *S_skill2 = new ShotGun(10, 2000, 0);
+    Riffle *R_skill1 = new Riffle(10, 2000, 2);
+    
+    cout << "샷건 스킬 1 피해량 : " << S_skill1->Rdamage() << endl;
+    cout << "샷건 스킬 2 피해량 : " << S_skill2->Rdamage() << endl;
+    cout << "라이플 스킬 1 피해량 : " << R_skill1->Rdamage() << endl;
+}
