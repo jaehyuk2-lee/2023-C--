@@ -75,6 +75,6 @@ int main() {
     for (Message *m : messages) {
         printMessage(*m);
     }
-    
+    delete m;
     delete p_image;
 }
