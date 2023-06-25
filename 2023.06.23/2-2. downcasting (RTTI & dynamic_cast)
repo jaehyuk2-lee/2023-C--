@@ -34,4 +34,4 @@ int main(){
     int *c = (int*)new Derived;
     cout << b[0] << " " << c[1] << " " << c[2] << endl;
 }
-//84강
+//두들낙서 84강 에서 확인하기
