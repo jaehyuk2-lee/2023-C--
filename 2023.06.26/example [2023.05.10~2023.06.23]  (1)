@@ -38,7 +38,9 @@ int main() {
     cout << a->f() << endl; // 20
     cout << static_cast<B*>(a)->g() << endl; // 10
     cout << b->f() << endl; // 30
-    cout << static_cast<C*>(b)->g() << endl; // 20
+    if (C *t = dynamic_cast<C*>(b)) {
+        cout << t->g() << endl;// 20 static_cast로도 가능
+    }
     cout << c->f() << endl; // 30
     cout << c->g() << endl; // 20
     cout << d->g() << endl; // 20
