@@ -1,0 +1,45 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+template<typename T>
+class Vector2 {
+public:
+    Vector2() : x(0), y(0) {}
+    Vector2(T x, T y) : x(x), y(y) {}
+    
+    T GetX() {return x;}
+    T GetY() {return y;}
+    
+    Vector2 &operator+ (const Vector2 &rhs) const {
+        return Vector2(x + rhs.x, y + rhs.y);
+    }
+    Vector2 &operator- (const Vector2 &rhs) const {
+        return Vector2(x - rhs.x, y - rhs.y);
+    }
+    Vector2 &operator+= (const Vector2 &rhs) {
+        x += rhs.x;
+        y += rhs.y;
+        
+        return *this;
+    }
+    Vector2 &operator-= (const Vector2 &rhs) {
+        x -= rhs.x;
+        y -= rhs.y;
+        
+        return *this;
+    }
+    
+private:
+    T x, y;
+};
+
+int main() {
+    Vector2<int> v1(1,2);
+    Vector2<float> v2(2.1, 3.2);
+    Vector2<double> v3(3.4, 4.5);
+    
+    cout << v1.GetX() << ", " << v1.GetY() << endl;
+    cout << v2.GetX() << ", " << v2.GetY() << endl;
+    cout << v3.GetX() << ", " << v3.GetY() << endl;
+}
