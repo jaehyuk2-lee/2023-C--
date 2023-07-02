@@ -1,0 +1,38 @@
+#include <iostream>
+using namespace std;
+
+template<typename T, int n>
+class Vector {
+public:
+    void Setcomp(int i, T val){
+        comp[i] = val;
+    }
+    T Getcomp(int i) {return comp[i];}
+    
+    Vector operator+ (const Vector &rhs) const {
+        Vector res;
+        for(int i = 0; i < n; i++){
+            res.comp[i] = this->comp[i] + rhs.comp[i];
+        }
+        return res;
+    }
+    
+private:
+    T comp[n];
+};
+
+int main() {
+    Vector<float, 3> v1, v2;
+    
+    v1.Setcomp(0,1);
+    v1.Setcomp(1,2);
+    v1.Setcomp(2,3);
+    
+    v2.Setcomp(0,4);
+    v2.Setcomp(1,5);
+    v2.Setcomp(2,6);
+    
+    Vector<float, 3> v3 = v1 + v2;
+    
+    cout << v3.Getcomp(0) << ", " << v3.Getcomp(1) << ", " << v3.Getcomp(2) << endl;
+}
