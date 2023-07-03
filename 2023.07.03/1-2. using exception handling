@@ -1,0 +1,38 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+int fact(int n){
+    if(n < 0) throw to_string(n) + " : 음수입니다."; //자료형 제한 X
+    if(n == 0) return 1;
+    return n * fact(n-1);
+}
+
+int comb(int n, int r) {
+    int a = fact(n);
+    int b = fact(r);
+    int c = fact(n - r);
+    return a / b / c;
+}
+
+int main() {
+    int n, r;
+    try{
+        throw 12.3;
+        while (true) {
+            cin >> n >> r;
+            cout << comb(n, r) << endl;
+        } //try-catch가 while안에 있으면 예외가 있어도 계속 반복
+    }
+    catch (const string &e){
+        cout << e << endl;
+    } //던지는 예외가 많아질수록 효율적이다.
+    
+    catch (int e) {
+        cout << e << endl;
+    } //던지는 형에 따라 다르게 받기 가능
+    
+    catch (...){
+        cout << "알수없는 오류 발생" << endl; 
+    }//적절한 catch가 없으면 런타임 에러, ... 모든 catch에 부합하지 않으면 도착
+}
