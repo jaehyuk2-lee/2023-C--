@@ -1,0 +1,27 @@
+#include <iostream>
+using namespace std;
+
+class Equals {
+public:
+    Equals (int val) : val(val){}
+    
+    bool operator()(int x){
+        return x == val;
+    }
+    
+    bool operator()(int x, int y){
+        return x + y== val;
+    }
+    
+private:
+    int val;
+};
+
+int main() {
+    Equals eq(123), eq2(234);
+    
+    cout << eq(111) << endl;
+    cout << eq(111, 12) << endl;
+    cout << eq2(123) << endl;
+    cout << eq2(234) << endl;
+}
