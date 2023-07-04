@@ -1,0 +1,25 @@
+#include <iostream>
+#include <memory>
+using namespace std;
+
+//unique_ptr, shared_ptr, weak_ptr
+
+class Test {
+public:
+    Test(int x) : x(x) {cout << "생성자" << endl;}
+    ~Test() {cout << "소멸자" << endl;}
+    
+    int GetX() const { return x; }
+private:
+    int x;
+};
+
+int main() {
+    shared_ptr<Test> a(new Test(5));
+    {
+    shared_ptr<Test> b = a; //메모리 공동 소유 가능
+    cout << a.use_count() << endl;//메모리 소유하는 변수의 개수
+    cout << b.use_count() << endl;
+    }
+    cout << a.use_count() << endl;
+}
