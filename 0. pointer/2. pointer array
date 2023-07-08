@@ -29,4 +29,19 @@ int main() {
     for(int i = 0; i < 4; i++){
         printf("%d ", *ptr[i]);
     }
+    printf("\n");
+    
+    char *ptr_s[3];
+    char str[3][10] = {"Hello", "World", "Pointer"};
+    for(int i = 0; i < 3; i++){
+        printf("%s\n", str[i]); //&str[i][0]
+    }
+    
+    for(int i = 0; i < 3; i++){
+        ptr_s[i] = str[i]; 
+    }
+    
+    for(int i = 0; i < 3; i++){
+        printf("포인터 배열: %s\n", ptr_s[i]);
+    }
 }
