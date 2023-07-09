@@ -4,10 +4,9 @@ using namespace std;
 int main() {
     int num, sum, cnt;
     char str[10][80];
-    
     cin >> num;
     for(int i = 0; i < num; i++){
-        cin >> str[num][80];
+        cin >> str[i];  
     }
     
     for(int i = 0; i < num; i++){
@@ -15,7 +14,7 @@ int main() {
         cnt = 0;
         for(int j = 0; j < 80; j++){
             if(str[i][j] == 'O'){
-                ++cnt;
+                cnt++;
                 sum += cnt;
             }
             else cnt = 0;
