@@ -1,6 +1,7 @@
 /* 두개의 문자열 s1, s2를 입력 받고,
 s1과 s2에 같은 index에 있는 문자들을 비교해
-같으면 O 다르면 X*/
+같으면 O 다르면 X
+*/
 
 #include <iostream>
 #include <cstring>
