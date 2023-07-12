@@ -1,33 +1,33 @@
 #include <iostream>
 using namespace std;
 
-int main(){
+int main() {
     int arr[26];
     char alp[26];
     for(int i = 0; i < 26; i++){
         arr[i] = -1;
-        alp[i] = 'a'+i;
-        
+        alp[i] = 'a' + i;
     }
-    
     
     string str;
     cin >> str;
     
+    int *ptr;
+    ptr = arr;
+    
     int cnt = 0;
     for(int i = 0; str[i]; i++){
-        for(int j = 0; j < 26; j++){
+        for(int j = 0; alp[j]; j++){
             if(str[i] == alp[j]){
-                if(arr[j] == -1){
-                    arr[j] = cnt;
-                    cnt++;
+                if(*(ptr + j) == -1){
+                    *(ptr + j) = cnt++;
                 }
                 else cnt++;
             }
         }
     }
     
-    for(int i = 0; i <26; i++){
-        cout << arr[i] << ' ';
+    for(int i = 0; i < 26; i++){
+        cout << *(ptr + i) << ' ';
     }
 }
