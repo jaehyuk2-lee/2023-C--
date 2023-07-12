@@ -2,27 +2,26 @@
 #include <iostream>
 using namespace std;
 
-void swap(int &a, int &b){
+void swap(int &a, int &b) {
     int tmp = a;
     a = b;
     b = tmp;
 }
 
-void dswap(double &a, double &b){
+void dswap(double &a, double &b) {
     double tmp=a;
     a=b;
     b=tmp;
 }
 
-void pswap(int *(&a), int *(&b)){
+void pswap(int *(&a), int *(&b)) {
     int *tmp=a;
     a=b;
     b=tmp;
     
 }
 
-int main()
-{
+int main() {
     int a=20, b=30;
     double da=2.222, db=3.3333;
     int *pa=&a, *pb=&b;
