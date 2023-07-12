@@ -9,8 +9,10 @@ int main() {
         cin >> str;
         sum = 0;
         cnt = 0;
-        for(int i = 0; str[i]!='\0'; i++){
-            if(str[i] == 'O'){
+        
+        char *ptr = str;
+        for(int i = 0; *(ptr + i); i++){
+            if(*(ptr+i) == 'O'){
                 cnt++;
                 sum += cnt;
             }
