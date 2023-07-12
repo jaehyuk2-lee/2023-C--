@@ -1,6 +1,6 @@
 //함수
-
 #include <iostream>
+using namespace std;
 
 void swap(int &a, int &b){
     int tmp = a;
@@ -27,15 +27,15 @@ int main()
     double da=2.222, db=3.3333;
     int *pa=&a, *pb=&b;
     
-    std::cout<<"a : "<<a<<" b : "<<b<<std::endl;
+    cout << "a : " << a << ' ' << "b : " << b << endl;
     swap(a,b);
-    std::cout<<"a : "<<a<<" b : "<<b<<std::endl;
+    cout << "a : " << a << ' ' << "b : " << b << endl;
     
-    std::cout<<"da : "<<da<<" db : "<<db<<std::endl;
+    cout << "da : " << da << ' ' << "db : " << db << endl;
     dswap(da,db);
-    std::cout<<"da : "<<da<<" db : "<<db<<std::endl;
+    cout << "da : " << da << ' ' << "db : " << db << endl;
     
-    std::cout<<"pa : "<<pa<<" pb : "<<pb<<std::endl;
+    cout << "pa : " << pa << ' ' << "pb : " << pb << endl;
     pswap(pa,pb);
-    std::cout<<"pa : "<<pa<<" pb : "<<pb<<std::endl;
+    cout << "pa : " << pa << ' ' << "pb : " << pb << endl;
 }
