@@ -12,7 +12,7 @@ int main() {
         
         char *ptr = str;
         for(int i = 0; *(ptr + i); i++){
-            if(*(ptr+i) == 'O'){
+            if(*(ptr + i) == 'O'){
                 cnt++;
                 sum += cnt;
             }
