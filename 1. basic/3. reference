@@ -27,12 +27,4 @@ int main()
     swap(x,y);
     cout<<"x = "<<x<<' ';
     cout<<"y = "<<y<<' ';
-    
-    //r-value: 등호를 사이에 두고 수정할 수 없는 오른쪽 변수
-    //&&r : r-value 참조
-
-    int i(5);
-    int &r1=i; //l-value 참조, i는 수정할 수 있는 변수
-    int &&r2=3; //r-value 참조, 3은 그 자체로 변경 불가
-    int &&r3=a*a; //r-value 참조, 식에는 어떤 수를 대입 할 수 없음 
 }
