@@ -7,17 +7,18 @@ int main()
 {
     int a, b;
     cin >> a >> b;
-    cout<<a<<"+"<<b<<"="<<a+b<<endl;
+    cout << a << "+" << b << "=" << a + b << endl;
+    
     string str;
-    str="Hello";
-    cout<<str<<endl;
+    str = "Hello";
+    cout << str << endl;
     
     string name;
-    cout<<"입력 : ";
-    cin>>name;
+    cout << "입력 : ";
+    cin >> name;
     
     string message = "안녕하세요, " + name + "님";
     
-    cout<<message<<endl;
+    cout << message << endl;
 
 }
