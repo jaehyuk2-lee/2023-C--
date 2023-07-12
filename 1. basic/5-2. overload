@@ -1,10 +1,8 @@
 //overload : 매개변수의 형을 인식해 가장 적절한 함수를 찾아간다
-
 #include <iostream>
-
 using namespace std;
 
-int inventory[64] ={0};
+int inventory[64] = {0};
 int score = 0;
 
 void getItem(int itemId){
@@ -12,11 +10,11 @@ void getItem(int itemId){
 }
 
 void getItem(int itemId, int cnt){
-    inventory[itemId]+=cnt;
+    inventory[itemId] += cnt;
 }
 
 void getItem(int itemId, int cnt, int sc){
-    inventory[itemId]+=cnt;
+    inventory[itemId] += cnt;
     score += sc;
 }
     
@@ -27,10 +25,10 @@ int main()
     getItem(3);
     getItem(11, 34, 70000);
     
-    cout<<score<<endl;
+    cout << score << endl;
     
-    for(int i=0; i<16; i++){
+    for(int i = 0; i < 16; i++){
         cout << inventory[i] << ' ';
     }
-    cout<<endl;
+    cout << endl;
 }
