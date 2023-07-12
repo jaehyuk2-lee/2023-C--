@@ -1,8 +1,7 @@
 #include <iostream>
-
 using namespace std;
 
-void swap(int &a, int &b){
+void swap(int &a, int &b) {
     int tmp=a;
     a=b;
     b=tmp;
@@ -10,21 +9,20 @@ void swap(int &a, int &b){
 
 //call by reference CPP
 
-int main()
-{
+int main() {
     int a = 10;
-    int *p=&a; //p에는 a의 주소값 대입
-    *p=15; //p에 들어가 있는 주소에 있는 변수를 15로 변경
-    cout<<a<<endl;
+    int *p = &a; //p에는 a의 주소값 대입
+    *p = 15; //p에 들어가 있는 주소에 있는 변수를 15로 변경
+    cout << a << endl;
     
-    int &r=a; //&는 주소가 아니라 참조를 의미: 참조되는 객체의 별칭
-    r=20;
-    cout<<a<<endl;
+    int &r = a; //&는 주소가 아니라 참조를 의미: 참조되는 객체의 별칭
+    r = 20;
+    cout << a << endl;
     
     int x(5), y(10);
-    cout<<"x = "<<x<<' ';
-    cout<<"y = "<<y<<' '<<endl;
+    cout << "x = " << x << ' ';
+    cout << "y = " << y << ' ' << endl;
     swap(x,y);
-    cout<<"x = "<<x<<' ';
-    cout<<"y = "<<y<<' ';
+    cout << "x = " << x << ' ';
+    cout << "y = " << y << ' ';
 }
