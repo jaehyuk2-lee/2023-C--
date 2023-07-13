@@ -1,45 +1,30 @@
 #include <iostream>
-
 using namespace std;
 
 class Time {
 public:
-    //Time(5); 5초
-    //Time(5, 0); 5분
-    //Time(2, 37, 54); 2시간 37분 54초
-    
-    /*Time() : h(0), m(0), s(0){}
-    Time(int s) : s(s){}
-    Time(int m, int s) : m(m), s(s){}
-    Time(int h, int m, int s) : h(h), m(m), s(s){}*/
-    //계속 공통 된 부분 존재
-    
-    //생성자 위임
-    Time() : h(0), m(0), s(0){}
-    Time(int s_) : Time(){
-        s=s_;
+    Time() : hour(0), minute(0), second(0) {}
+    Time(int s) : Time() {
+        second = s;
     }
-    Time(int m_, int s_) : Time(s_){
-        m=m_;
+    Time(int m, int s) : Time(s) {
+        minute = m;
     }
-    Time(int h_, int m_, int s_) : Time(m_,s_){
-        h=h_;
-    } //위로 위로 타고 올라가서 0으로 초기화 하고 s 부터 순서대로 대입
-      //오버로딩이 많을수록 수정해야하는 부분이 어서 편하다
+    Time(int h, int m, int s) : Time(m, s) {
+        hour = h;
+    }// 생성자 위임
     
-    int h;
-    int m;
-    int s;
+    int hour, minute, second;
 };
 
-int main(){
+int main() {
     Time t1;
     Time t2(5);
-    Time t3(3,16);
-    Time t4(2,4,15);
+    Time t3(3, 16);
+    Time t4(2, 26, 3);
     
-    cout << "t1 : " << t1.h << ":" << t1.m << ":" << t1.s << endl;
-    cout << "t2 : " << t2.h << ":" << t2.m << ":" << t2.s << endl;
-    cout << "t3 : " << t3.h << ":" << t3.m << ":" << t3.s << endl;
-    cout << "t4 : " << t4.h << ":" << t4.m << ":" << t4.s << endl;
+    cout << t1.hour << "시 " << t1.minute << "분 " << t1.second << "초" << endl;
+    cout << t2.hour << "시 " << t2.minute << "분 " << t2.second << "초" << endl;
+    cout << t3.hour << "시 " << t3.minute << "분 " << t3.second << "초" << endl;
+    cout << t4.hour << "시 " << t4.minute << "분 " << t4.second << "초" << endl;
 }
