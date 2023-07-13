@@ -1,0 +1,19 @@
+#include <iostream>
+using namespace std;
+
+class JaH {
+public:
+    void PrintThis() {
+        cout << "현 주소 : " << this << endl;
+    } //객체에 모두 저장되어 있지 않다. 선언될 때 안보이지만 매개변수로 받아서 사용한다
+};
+
+int main() {
+    JaH a, b;
+    
+    cout << "a의 주소 : " << &a << endl;
+    a.PrintThis();
+    
+    cout << "b의 주소 : " << &b << endl;
+    b.PrintThis();
+}
