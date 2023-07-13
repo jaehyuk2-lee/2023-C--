@@ -4,7 +4,7 @@ using namespace std;
 int n;
 
 void set() {
-    n=10;
+    n = 10;
 }
 
 namespace Jae {
@@ -18,7 +18,7 @@ namespace Hyuk {
 }
 
 void setJ(){
-    Jae::n=30;
+    Jae::n = 30;
 } //어디에 속한 n 인지 표시
 
 int main()
@@ -27,7 +27,7 @@ int main()
     Jae::set();
     Hyuk::set();
     
-    cout << n  << endl;
+    cout << n << endl;
     cout << Jae::n << endl;
     cout << Hyuk::n << endl;
     
@@ -37,13 +37,13 @@ int main()
 }
 
 void Jae::set() {
-        Jae::n=20;
+        Jae::n = 20;
     }
 
 namespace Hyuk {
     void set() {
-        n=30;
-        ::n=20;
+        n = 30;
+        ::n = 20;
     }
 } //한번에 정의하지 않아도 된다.
 
