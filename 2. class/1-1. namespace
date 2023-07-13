@@ -1,0 +1,49 @@
+#include <iostream>
+using namespace std;
+
+int n;
+
+void set() {
+    n=10;
+}
+
+namespace Jae {
+    int n;
+    void set();
+}
+
+namespace Hyuk {
+    int n;
+    void set();
+}
+
+void setJ(){
+    Jae::n=30;
+} //어디에 속한 n 인지 표시
+
+int main()
+{
+    ::set();
+    Jae::set();
+    Hyuk::set();
+    
+    cout << n  << endl;
+    cout << Jae::n << endl;
+    cout << Hyuk::n << endl;
+    
+    setJ();
+    cout << Jae::n << endl;
+    
+}
+
+void Jae::set() {
+        Jae::n=20;
+    }
+
+namespace Hyuk {
+    void set() {
+        n=30;
+        ::n=20;
+    }
+} //한번에 정의하지 않아도 된다.
+
