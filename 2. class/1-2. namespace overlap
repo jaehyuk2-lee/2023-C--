@@ -1,0 +1,36 @@
+//namespace overlap
+#include <iostream>
+using namespace std;
+
+int n;
+void set() {
+    n=10;
+}
+
+namespace Jae {
+    int n;
+    void set();
+    
+    namespace Hyuk {
+        void set();
+        int n;
+    }
+} //전처리 사용으로 정확한 n위치 판단
+
+int main(){
+    set();
+    Jae::set();
+    Jae::Hyuk::set();
+    
+    cout << n << endl;
+    cout << Jae::n << endl;
+    cout << Jae::Hyuk::n << endl;
+}
+
+void Jae::set() {
+    n = 20;
+}
+
+void Jae::Hyuk::set() {
+    n = 30;
+}
