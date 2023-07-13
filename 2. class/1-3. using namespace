@@ -1,0 +1,33 @@
+#include <iostream>
+
+int n;
+void set() {
+    n = 10;
+}
+
+namespace Jae {
+    int n;
+    void set() {
+        n = 20;
+    }
+    
+    namespace Hyuk {
+        int n;
+        void set() {
+            n = 30;
+        }
+    }
+}
+
+int main() {
+    using namespace std;
+    using namespace Jae; //모호성 발생
+    
+    ::set();
+    Jae::set();
+    Hyuk::set();
+    
+    cout << ::n << endl;
+    cout << Jae::n << endl;
+    cout << Hyuk::n << endl;
+}
