@@ -1,0 +1,47 @@
+// class : 저장 + 처리, 변수와 함수를 모아둔 새로운 자료형
+// object : class로 생성된 변수
+
+#include <iostream>
+using namespace std;
+
+class TV {
+
+public:
+    void on() {
+        PowerOn = true;
+        cout << "on" << endl;
+    }
+    void off() {
+        PowerOn = false;
+        cout << "off" << endl;
+    }
+    
+    void setChannel(int cnl) {
+        if(cnl > 1 && cnl < 999) {
+            channel = cnl;
+            cout << "채널 : " << channel << endl;
+        }
+        else cout << "존재하지 않는 채널" << endl;
+    }
+    
+    void setVolume(int vol) {
+        if(vol > 1 && vol < 100){
+            volume = vol;
+            cout << "음량크기 : " << volume << endl;
+        }
+    }
+    
+private:
+    bool PowerOn;
+    int channel;
+    int volume;
+};
+
+int main() {
+    TV apple;
+    apple.on();
+    apple.setVolume(60);
+    apple.setChannel(1024);
+    apple.setChannel(33);
+    apple.off();
+}
