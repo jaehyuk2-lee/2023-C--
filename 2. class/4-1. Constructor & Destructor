@@ -1,0 +1,30 @@
+// 생성자 : 객체 생성시 호출되는 함수
+// 소멸자 : 객체 소멸시 호출되는 함수
+
+#include <iostream>
+using namespace std;
+
+class JaH {
+public:
+    JaH() {
+        cout << "생성자" << endl;
+    } // 생성자
+    
+    ~JaH() {
+        cout << "소멸자" << endl;
+    }// 소멸자
+};
+
+JaH global;
+
+void testlocal() {
+    cout << "testlocal() 시작" << endl;
+    JaH local;
+    cout << "testlocal() 종료" << endl;
+}// 지역변수, 속한 함수가 소멸시 같이 소멸
+
+int main() {
+    cout << "main 시작" << endl;
+    testlocal();
+    cout << "main 종료" << endl;
+}
