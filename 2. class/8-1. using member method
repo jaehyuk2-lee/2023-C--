@@ -1,54 +1,41 @@
-//member method의 선언, 정의 분리하기 like 함수
-
 #include <iostream>
-
 using namespace std;
 
-class Vector{
+class Point {
 public:
-    Vector();
-    Vector(float x, float y);
+    Point();
+    Point(float x, float y);
+    
     float GetX() const;
-    float GetY() const;//선언
+    float GetY() const;
     
-    //벡터 합 
-    static Vector Sum(Vector a, Vector b) {
-    return Vector(a.x+b.x, a.y+b.y);
-    } //case 1
+    static Point Sum(Point a, Point b) {return Point((a.x + b.x), (a.y + b.y));}
     
-    Vector Add(Vector b){
-        return Vector(x+b.x, y+b.y);
-    }//case 2 새로운 백터를 선언 해 자기와 추가적인 벡터를 더한다 (동적)
-    
-    //벡터 곱
-    static int Multiply(Vector a, Vector b) {
-    return a.x*b.x + a.y*b.y;
-    } //case 1
-    int Multiply(Vector b){
-        return x*b.x+y*b.y;
-    }//case 2 새로운 백터를 선언 해 자기와 추가적인 벡터를 곱한다 (동적)
-    
+    Point Add(Point rhs) {
+        return Point(x + rhs.x, y + rhs.y);
+    }
+
 private:
     float x, y;
 };
 
-int main() {
-    Vector a(2,3);
-    Vector b(-1,4);
-    Vector c1 = Vector::Sum(a,b);
-    Vector c2 = a.Add(b); //a라는 벡터에 b를 넘겨서 더한다
-    int d1 = Vector::Multiply(a,b);
-    int d2 = a.Multiply(b);
+
     
-    cout << a.GetX() << ", " << a.GetY() <<endl;
-    cout << b.GetX() << ", " << b.GetY() <<endl;
-    cout << c1.GetX() << ", " << c1.GetY() <<endl;
-    cout << c2.GetX() << ", " << c2.GetY() <<endl;
-    cout << d1 <<endl;
-    cout << d2 <<endl;
+int main() {
+    Point a(3, 2);
+    Point b(-1, 4);
+    Point c1 = Point::Sum(a, b);
+    Point c2 = a.Add(b);
+    
+    cout << "a : " << a.GetX() << ", " << a.GetY() << endl;
+    cout << "b : " << b.GetX() << ", " << b.GetY() << endl;
+    cout << "c1 : " << c1.GetX() << ", " << c1.GetY() << endl;
+    cout << "c2 : " << c2.GetX() << ", " << c2.GetY() << endl;
+    
 }
 
-Vector::Vector() : x(0), y(0){}
-Vector::Vector(float x, float y) : x(x), y(y) {}
-float Vector::GetX() const {return x;}
-float Vector::GetY() const {return y;}//정의
+Point::Point() : x(0), y(0) {}
+Point::Point(float x, float y) : x(x), y(y) {}
+
+float Point::GetX() const {return x;}
+float Point::GetY() const {return y;}
