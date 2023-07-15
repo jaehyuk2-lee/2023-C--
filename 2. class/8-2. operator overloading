@@ -1,71 +1,55 @@
-//연산자 오버로딩
-
 #include <iostream>
-
 using namespace std;
 
-class Vector{
+class Vector {
 public:
     Vector();
     Vector(float x, float y);
+    
     float GetX() const;
-    float GetY() const;//선언
+    float GetY() const;
     
-    Vector operator+(Vector b){
-        return Vector(x+b.x, y+b.y);
-    } 
-    
-    Vector operator-(const Vector b) const; //선언 정의 분리 및 상수화 사용가능
-    float operator* (const Vector b) const; //상수들은 연사자 오버로딩 불가 ex) 1.6 * a
-    float operator/ (const Vector b) const;
+    Vector operator+(const Vector rhs) const; //연산자 오버로딩
+    Vector operator-(const Vector rhs) const;
+    Vector operator*(const float rhs) const;
+    float operator*(const Vector rhs) const; //내적
+    Vector operator/(const Vector rhs) const;
 
 private:
     float x, y;
 };
 
-Vector Sum(Vector a, Vector b) {
-    return Vector(a.GetX()+b.GetX(), a.GetY()+b.GetY());
-}
-
-Vector operator*(float a, Vector b){
-    return Vector(a*b.GetX(), a*b.GetY());
-} //상수와 계산 할수 있게 해주는 연산자 (비멤버 연산자)
-
-int main() {
-    Vector a(2,3);
-    Vector b(-1,4);
-    Vector c1 = Sum(a,b);
-    Vector c2 = a.operator+(b);
-    Vector c3 = a + b; //operator+ 선언해서 단순하게 사용가능
-    Vector c4 = a - b;
-    float c5 = a * b;
-    float c6 = a / b;
-    Vector c7 = 1.6 * a;
+Vector Sum(Vector a, Vector b) {return Vector((a.GetX() + b.GetX()), (a.GetY() + b.GetY()));}
     
-    cout << a.GetX() << ", " << a.GetY() <<endl;
-    cout << b.GetX() << ", " << b.GetY() <<endl;
-    cout << c1.GetX() << ", " << c1.GetY() <<endl;
-    cout << c2.GetX() << ", " << c2.GetY() <<endl;
-    cout << c3.GetX() << ", " << c3.GetY() <<endl;
-    cout << c4.GetX() << ", " << c4.GetY() <<endl;
-    cout << c5 << endl;
-    cout << c6 <<endl;
-    cout << c7.GetX() << ", " << c7.GetY() <<endl;
+int main() {
+    Vector a(3, 2);
+    Vector b(-1, 4);
+    Vector c1 = Sum(a, b);
+    Vector c2 = a + b; //a.operator+(b);
+    Vector c3 = a - b;
+    Vector c4 = a * 10;
+    float c5 = a * b;
+    Vector c6 = a / b;
+    
+    cout << "a : " << a.GetX() << ", " << a.GetY() << endl;
+    cout << "b : " << b.GetX() << ", " << b.GetY() << endl;
+    cout << "c1 : " << c1.GetX() << ", " << c1.GetY() << endl;
+    cout << "c2 : " << c2.GetX() << ", " << c2.GetY() << endl;
+    cout << "c3 : " << c3.GetX() << ", " << c3.GetY() << endl;
+    cout << "c4 : " << c4.GetX() << ", " << c4.GetY() << endl;
+    cout << "c5 : " << c5 << endl;
+    cout << "c6 : " << c6.GetX() << ", " << c6.GetY() << endl;
+    
 }
 
-Vector::Vector() : x(0), y(0){}
+Vector::Vector() : x(0), y(0) {}
 Vector::Vector(float x, float y) : x(x), y(y) {}
+
 float Vector::GetX() const {return x;}
-float Vector::GetY() const {return y;}//정의
+float Vector::GetY() const {return y;}
 
-Vector Vector::operator-(const Vector b) const {
-    return Vector(x-b.x, y-b.y);
-}
-
-float Vector::operator*(const Vector b) const {
-    return x*b.x + y*b.y;
-}
-
-float Vector::operator/(const Vector b) const {
-    return x/b.x + y/b.y;
-}
+Vector Vector::operator+(const Vector rhs) const {return Vector(x + rhs.x, y + rhs.y);}
+Vector Vector::operator-(const Vector rhs) const {return Vector(x - rhs.x, y - rhs.y);}
+Vector Vector::operator*(const float rhs) const {return Vector(x * rhs, y * rhs);}
+float Vector::operator*(const Vector rhs) const {return x * rhs.x + y * rhs.y;}
+Vector Vector::operator/(const Vector rhs) const {return Vector(x / rhs.x, y / rhs.y);}
