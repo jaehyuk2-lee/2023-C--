@@ -1,50 +1,38 @@
-/*static variable : 프로그램이 종료되기 전까지 메모리가 소멸하지 않는 변수
-~> 선언: 상수로 한번만, 선언 하지 않으면 0으로 초기화*/
+// 정적멤버변수 : 같은 클래스로 생성된 객체가 공유하는 변수
 #include <iostream>
-
 using namespace std;
 
 class Color {
 public:
-    Color() : r(0), g(0), b(0), id(idCnt++)/*id에 대입 후 1증가*/ {}
-    Color(float r, float g, float b) : r(r), g(g), b(b), id(idCnt++) {}
+    Color() : r(0), g(0), b(0), num(numCnt++) {}
+    Color(float r, float g, float b) : r(r), g(g), b(b), num(numCnt++) {}
     
-    float GetR() {return r;}
-    float GetG() {return g;}
-    float GetB() {return b;}
+    float GetR() { return r; }
+    float GetG() { return g; }
+    float GetB() { return b; }
+    int GetN() { return num; }
     
-    int GetId() { return id; }
-    
-    static Color MixColors (Color a, Color b) {
-    return Color((a.r+b.r)/2, (a.g+b.g)/2, (a.b+b.b)/2);
+    static Color Mix(Color a, Color b) {
+    return Color((a.r + b.r) / 2, (a.g + b.g) / 2, (a.b + b.b) / 2);
     }
     
-    static int idCnt;
-    /*객체에 부여할 번호, 원래라면 함수가 끝날 때 소멸 해야하지만
-    정적으로 선언해 메모리에 계속 이전 상태를 저장
-    
-    전역 변수가 많아질수록 중복이 많아지고 복잡해진다
-    따라서 관련있는 변수는 집어넣는 것이 좋다*/
-    
+    static int numCnt; // 클래스 별로 따로 사용가능
+
 private:
-    float r;
-    float g;
-    float b;
-    
-    int id;
+    float r, g, b;
+    int num;
 };
 
-int Color::idCnt=1;
+int Color::numCnt = 1;
 
 int main() {
-    Color blue(0,0,1);
-    Color red(1,0,0);
-    Color purple = Color::MixColors(red, blue);
+    Color a(1, 2, 3);
+    Color b(4, 2, 6);
     
-    cout << "r=" << purple.GetR()<< " g=" << purple.GetG()<< " b=" << purple.GetB() << endl;
+    Color c = Color::Mix(a, b);
     
-    cout << "red's id: " << red.GetId() <<endl; //2
-    cout << "blue's id: " << blue.GetId() <<endl; //1
-    cout << "purple's id: " << purple.GetId() <<endl; //3
-    
+    cout << "R : " << c.GetR() << endl;
+    cout << "C : " << c.GetG() << endl;
+    cout << "B : " << c.GetB() << endl;
+    cout << "Number : " << c.GetN() << endl;
 }
