@@ -1,7 +1,4 @@
-//static member
-
 #include <iostream>
-
 using namespace std;
 
 class Color {
@@ -12,26 +9,22 @@ public:
     float GetR() {return r;}
     float GetG() {return g;}
     float GetB() {return b;}
-    //r,g,b 전부 private 선언이라 사용
     
-    static Color MixColors (Color a, Color b) {
-    return Color((a.r+b.r)/2, (a.g+b.g)/2, (a.b+b.b)/2);
-    }//정적 선언 ~> class 안으로 넣었음, private에 접근 할 수 있음
-     //따라서 선언한 Get~함수 사용 안해도 됨
-    
+    static Color Mix(Color a, Color b) {
+    return Color((a.r + b.r) / 2, (a.g + b.g) / 2, (a.b + b.b) / 2);
+    } //정적 메서드, private 접근 가능
+
 private:
-    float r;
-    float g;
-    float b;
+    float r, g, b;
 };
 
-
-
 int main() {
-    Color blue(0,0,1);
-    Color red(1,0,0);
-    Color purple = Color::MixColors(red, blue);//namespace처럼 사용
-    //Color purple = blue.MixColors(red, blue); 이거도 됨 Color blue 안에 MixColor가 정의되어 있기 때문
+    Color a(1, 2, 3);
+    Color b(4, 2, 6);
     
-    cout << "r=" << purple.GetR()<< " g=" << purple.GetG()<< " b=" << purple.GetB() << endl;
+    Color c = Color::Mix(a, b);
+    
+    cout << c.GetR() << endl;
+    cout << c.GetG() << endl;
+    cout << c.GetB() << endl;
 }
