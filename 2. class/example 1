@@ -1,0 +1,34 @@
+#include <iostream>
+using namespace std;
+
+class GameWindow {
+public:
+    GameWindow();
+    GameWindow(const int, const int);
+    void ResizeWindow(const int, const int);
+    
+    int GetWidth() const {return width;}
+    int GetHeight() const {return height;}
+
+private:
+    int width, height;
+};
+
+GameWindow::GameWindow() : width(800), height(600) {}
+GameWindow::GameWindow(const int w, const int h) {
+    ResizeWindow(w, h);
+}
+
+void GameWindow::ResizeWindow(const int w, const int h){
+    if(w < 800) width = 800;
+    else width = w;
+    if(h < 600) height = 600;
+    else height = h;
+}
+
+int main() {
+    GameWindow mainWindow(0, 345);
+    cout << mainWindow.GetWidth() << ", " << mainWindow.GetHeight() << endl;
+    mainWindow.ResizeWindow(1366, 768);
+    cout << mainWindow.GetWidth() << ", " << mainWindow.GetHeight() << endl;
+}
