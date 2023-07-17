@@ -1,0 +1,45 @@
+//https://psmkr0225.tistory.com/18
+#include <iostream>
+using namespace std;
+
+class Calculator {
+public:
+    Calculator() : add(0), subtract(0), multiply(0), divide(0) {}
+    double Add(double x, double y) {
+        add++;
+        return x + y;
+    }
+    double Subtract(double x, double y) {
+        subtract++;
+        return x - y;
+    }
+    double Multiply(double x, double y) {
+        multiply++;
+        return x * y;
+    }
+    double Divide(double x, double y) {
+        if(y != 0) {
+            divide++;
+            return x / y;
+        } //조건부로 리턴이 없을수도 있음
+    }
+    void ShowCount(){
+        cout << "덧셈 : " << add << endl;
+        cout << "뺄셈 : " << subtract << endl;
+        cout << "곱셉 : " << multiply << endl;
+        cout << "나눗셈 : " << divide << endl;
+    }
+    
+private:
+    int add, subtract, multiply, divide;
+};
+
+int main() {
+    Calculator cal;
+    cout << "5.4 + 4.2 = " << cal.Add(5.4, 4.2) << endl;
+    cout << "2.6 - 1.2 = " << cal.Subtract(2.6, 1.2) << endl;
+    cout << "4 * 7 = " << cal.Multiply(4, 7) << endl;
+    cout << "2.5 * 3.6 = " << cal.Multiply(2.5, 3.6) << endl;
+    cout << "2 / 3 = " << cal.Divide(2, 3) << endl;
+    cal.ShowCount();
+}
