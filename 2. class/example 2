@@ -21,7 +21,8 @@ public:
         if(y != 0) {
             divide++;
             return x / y;
-        } //조건부로 리턴이 없을수도 있음
+        }
+        else return 0; //조건부로 리턴이 없을 수도
     }
     void ShowCount(){
         cout << "덧셈 : " << add << endl;
