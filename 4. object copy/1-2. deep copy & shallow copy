@@ -15,6 +15,7 @@ public:
     }
     ~String() {
         delete[] strData;
+        strData = NULL;
     }
     
     char *GetStrData() const {return strData;}
