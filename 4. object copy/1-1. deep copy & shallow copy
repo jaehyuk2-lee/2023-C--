@@ -1,13 +1,12 @@
 #include <iostream>
-
 using namespace std;
 
-int main(){
-    int *a = new int (5);
-    int *b = new int (3);
-    //a에는 5의 주소 b에는 3에 주소가 저장되어 있음 (5와 3)
-    //a = b; 얕은 복사 (참조만 복사) a에, b에 저장된 3의 주소를 입력
-    //*a = *b 깊은 복사 (값을 복사) a가 가르키는 5에 3을 입력 (3과 3으로 변경)
+int main() {
+    int *a = new int(5);
+    int *b = new int(3);
+    
+    //a = b; 3의 주소 복사, 5에 접근 및 할당해제 불가, 주소 해제시 런타임 에러
+    *a = *b; //5의 주소에 3복사
     
     delete a;
     delete b;
