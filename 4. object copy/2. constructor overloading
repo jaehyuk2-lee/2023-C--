@@ -1,59 +1,47 @@
 #include <iostream>
-#include <string.h>
-
+#include <cstring>
 using namespace std;
 
-class String{
+class String {
 public:
-    String(){
-        cout << "String() 생성자 호출" << endl;
-        strData = NULL;//아무것도 가르키고 있지 않다
-        len = 0;
-    }//입력 없으면 굳이 동적할당 받을 필요는 없음
-    
-    String(const char *str){
-        cout << "String(const char*) 생성자 호출" << endl;
-        len = strlen(str);
-        strData = new char[len+1]; //널 문자로 끝을 표현하기 때문에 길이 1칸 더 필요
-        cout << "strData 할당 : " << (void*)strData << endl;
-        //문자열이 아니라 포인터 출력을 위해 (void*) 형변환 사용, 주소값만 저장
-        strcpy(strData, str); //깊은 복사
-    }//const char을 가르키는 포인터
-    
-    String (const String &rhs) {
-        //strData = rhs.strData; 얕은 복사 (포인터의 주소만 복사)
-        len=rhs.len; //깊은 복사
-        
-        cout << "String(const &rhs) 생성자 호출" << endl;
-        strData = new char[len+1];//새로운 주소를 할당 받아서 
-        cout << "strData 할당 : " << (void*)strData << endl;
-        strcpy(strData, rhs.strData); //내용 복사
-    }//복사 생성자
-    
-    ~String(){
-        cout << "~String() 소멸자 호출" << endl;
-        delete[] strData;
-        cout << "strData 해제됨 : " << (void*)strData << endl;
+    String() {
+        cout << "String() 생성" << endl;
         strData = NULL;
+        len = 0;
+    }
+    String(const char *str) {
+        cout << "String(입력됨) 생성" << endl;
+        len = strlen(str);
+        strData = new char[len + 1];
+        cout << "strData 주소 할당" << (void*)strData /*자료형 무시*/ << endl;
+        strcpy(strData, str);
     }
     
-    char *GetStrData() const {
-        return strData;
+    String(const String &rhs) {
+        len = rhs.len;
+        strData = new char[rhs.len + 1];
+        cout << "strData 깊은복사를 위한 주소 할당" << (void*)strData << endl;
+        strcpy(strData, rhs.strData);
+    } //깊은복사 위해 선언
+    
+    ~String() {
+        cout << "String() 소멸" << endl;
+        delete[] strData;
+        cout << "strData 주소 할당해제" << (void*)strData << endl;
+        strData = NULL; //해제된 메모리에 접근 할 수 없어서 비워버림
+
     }
     
-    int GetLen() const {
-        return len;
-    }
-    
+    char *GetStrData() const {return strData;}
+    int GetLen() const {return len;}
+
 private:
     char *strData;
     int len;
 };
 
-int main(){
-    String s1("하이요");
-    String s2(s1); // 복사 생성자
-    
-    cout << s1.GetStrData() << endl;
+int main() {
+    String s1("Hello");
+    String s2(s1);
     cout << s2.GetStrData() << endl;
 }
