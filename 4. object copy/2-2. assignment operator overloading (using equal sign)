@@ -1,74 +1,63 @@
 #include <iostream>
-#include <string.h>
-
+#include <cstring>
 using namespace std;
 
-class String{
+class String {
 public:
-    String(){
-        cout << "String() 생성자 호출" << endl;
+    String() {
+        cout << "String() 생성" << endl;
         strData = NULL;
         len = 0;
     }
-    
-    String(const char *str){
-        cout << "String(const char*) 생성자 호출" << endl;
+    String(const char *str) {
+        cout << "String(입력됨) 생성" << endl;
         len = strlen(str);
-        strData = new char[len+1];
-        cout << "strData 할당 : " << (void*)strData << endl;
+        strData = new char[len + 1];
+        cout << "strData 주소 할당" << (void*)strData << endl;
         strcpy(strData, str);
     }
     
-    String (const String &rhs) {
-        len=rhs.len;
-        cout << "String(const &rhs) 생성자 호출" << endl;
-        strData = new char[len+1];
-        cout << "strData 할당 : " << (void*)strData << endl;
+    String(const String &rhs) {
+        len = rhs.len;
+        strData = new char[len + 1];
+        cout << "strData 깊은복사를 위한 주소 할당 : " << (void*)strData << endl;
         strcpy(strData, rhs.strData);
     }
     
-    ~String(){
-        cout << "~String() 소멸자 호출" << endl;
-        delete[] strData;
-        cout << "strData 해제됨 : " << (void*)strData << endl;
-        strData = NULL;
-    }
-    
-    String &operator=(const String &rhs){ //레퍼런스 사용 ~> 복사 안하고 바로 참조 가능
+    String &operator=(const String &rhs) {
         if(this != &rhs){
-        len=rhs.len;
-        delete[] strData;
-        strData = new char[len+1];
-        cout << "strData 할당 : " << (void*)strData << endl;
-        strcpy(strData, rhs.strData);    
-        } //자기 자신한테 대입 하면 쓰레기 값이 출력 되기 때문
+            delete[] strData;
+            strData = new char[rhs.len + 1];
+            cout << "strData 깊은복사를 위한 주소 할당 : " << (void*)strData << endl;
+            strcpy(strData, rhs.strData);
+            len = rhs.len;
+        }
         
-        return *this;
-    } //대입 연산자 오버로딩
+    return *this;
+    }//레퍼런스 호출 ~> 불필요한 복사 최소화
     
-    char *GetStrData() const {
-        return strData;
+    ~String() {
+        cout << "String() 소멸" << endl;
+        cout << "strData 주소 할당해제" << (void*)strData << endl;
+        delete[] strData;
+        strData = NULL;
+
     }
     
-    int GetLen() const {
-        return len;
-    }
-    
+    char *GetStrData() const {return strData;}
+    int GetLen() const {return len;}
+
 private:
     char *strData;
     int len;
 };
 
-int main(){
-    String s1("하이요");
+int main() {
+    String s1("Hello");
     String s2(s1);
-    String s3("hleoe");
-    //s3 = s1; 깊은 복사를 위해 대입 연산자 오버로딩 필요
-    s3.operator=(s3);
+    String s3("안녕");
+    s3 = s1;
     
-    cout << s1.GetStrData() << endl;
     cout << s2.GetStrData() << endl;
-    cout << s3.GetStrData() << endl;
-    s3.operator=(s1);
     cout << s3.GetStrData() << endl;
 }
