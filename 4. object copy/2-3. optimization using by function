@@ -73,3 +73,5 @@ int main() {
     cout << a.GetStrData() << endl;
     cout << "====4====" << endl;
 }
+
+//rvalue 69강 19:20
