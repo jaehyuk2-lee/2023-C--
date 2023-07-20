@@ -13,7 +13,7 @@ public:
         cout << "String(입력됨) 생성" << endl;
         len = strlen(str);
         strData = new char[len + 1];
-        cout << "strData 주소 할당" << (void*)strData << endl;
+        cout << "strData 주소 할당 : " << (void*)strData << endl;
         strcpy(strData, str);
     }
     
@@ -38,7 +38,7 @@ public:
     
     ~String() {
         cout << "String() 소멸" << endl;
-        cout << "strData 주소 할당해제" << (void*)strData << endl;
+        cout << "strData 주소 할당해제 : " << (void*)strData << endl;
         delete[] strData;
         strData = NULL;
 
