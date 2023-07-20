@@ -1,4 +1,4 @@
-//원래는 임시객체 생성되서복사 생성자가 있는데, online c compiler는 임시객체를 생성 안하는 듯 함
+//원래는 임시객체 생성되서복사 생성자가 있는데, online c compiler는 임시객체가 생성자를 실행 안하는 듯 함
 #include <iostream>
 #include <cstring>
 using namespace std;
