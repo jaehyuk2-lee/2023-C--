@@ -13,21 +13,21 @@ public:
         cout << "String(입력됨) 생성" << endl;
         len = strlen(str);
         strData = new char[len + 1];
-        cout << "strData 주소 할당" << (void*)strData /*자료형 무시*/ << endl;
+        cout << "strData 주소 할당 : " << (void*)strData /*자료형 무시*/ << endl;
         strcpy(strData, str);
     }
     
     String(const String &rhs) {
         len = rhs.len;
         strData = new char[rhs.len + 1];
-        cout << "strData 깊은복사를 위한 주소 할당" << (void*)strData << endl;
+        cout << "strData 깊은복사를 위한 주소 할당 : " << (void*)strData << endl;
         strcpy(strData, rhs.strData);
     } //깊은복사 위해 선언
     
     ~String() {
         cout << "String() 소멸" << endl;
         delete[] strData;
-        cout << "strData 주소 할당해제" << (void*)strData << endl;
+        cout << "strData 주소 할당해제 : " << (void*)strData << endl;
         strData = NULL; //해제된 메모리에 접근 할 수 없어서 비워버림
 
     }
