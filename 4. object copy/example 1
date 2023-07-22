@@ -1,1 +1,60 @@
+// https://sobamemil.tistory.com/79
+#include <iostream>
+#include <cstring>
+using namespace std;
 
+class Book {
+private:
+    char *title;
+    int price;
+    
+public:
+    Book() {
+        title = NULL;
+        price = 0;
+    }
+    Book(const char *t, int p) {
+        int size = strlen(t) + 1;
+        title = new char[size];
+        strcpy(title, t);
+        price = p;
+    }
+    ~Book() {
+        delete[] title;
+    }
+    
+    Book (const Book &rhs) {
+        price = rhs.price;
+        int size = strlen(rhs.title) + 1;
+        title = new char[size];
+        strcpy(title, rhs.title);
+    }
+    Book &operator=(Book &rhs) {
+        if(this != &rhs) {
+            if(this->title) {delete[] title;}
+            int size = strlen(rhs.title) + 1;
+            title = new char[size];
+            strcpy(title, rhs.title);
+            price = rhs.price;
+        }
+        
+        return *this;
+    }
+    
+    void set(const char *t, int p) {
+        if(this->title) {delete[] title;}
+        int size = strlen(t) + 1;
+        title = new char[size];
+        strcpy(title, t);
+        price = p;
+    }
+    void show() { cout << title << ' ' << price << "원" << endl; }
+};
+
+int main() {
+    Book cpp("명품 C++", 10000);
+    Book java = cpp;
+    java.set("명품 JAVA", 12000);
+    cpp.show();
+    java.show();
+}
