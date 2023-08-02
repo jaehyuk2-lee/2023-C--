@@ -22,7 +22,7 @@ public:
         strData = new char[rhs.len + 1];
         cout << "strData 깊은복사를 위한 주소 할당 : " << (void*)strData << endl;
         strcpy(strData, rhs.strData);
-    } //깊은복사 위해 선언
+    } //객체 복사 생성
     
     ~String() {
         cout << "String() 소멸" << endl;
