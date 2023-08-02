@@ -25,7 +25,7 @@ public:
         cout << "이동 생성자 : " << this << endl;
         len = rhs.len;
         strData = rhs.strData;
-        rhs.strData = NULL; //이거 덕분에 얕은복사를 사용할 수 있음
+        rhs.strData = NULL;
     }
     ~String() {
         cout << "String() 소멸 : " << this << endl;
