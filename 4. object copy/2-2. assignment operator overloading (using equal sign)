@@ -33,7 +33,7 @@ public:
             len = rhs.len;
         }
         
-    return *this;
+    return *this; //연속 등호 사용
     }//레퍼런스 호출 ~> 불필요한 복사 최소화
     
     ~String() {
