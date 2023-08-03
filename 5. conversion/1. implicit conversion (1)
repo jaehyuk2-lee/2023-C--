@@ -1,45 +1,50 @@
 #include <iostream>
 #include <string>
-
 using namespace std;
 
-class Item{
+class Item {
 public:
-    Item (int num) : num(num){
+    Item(int num) : num(num) {
         cout << "Item(int)" << endl;
-    }//int를 Item으로 변경시키는 역할도 하고 있었음 (변환 생성자)
-    Item (string name) : name(name){
-        cout << "Item(string)"<<endl;
     }
-    Item(int num, string name) : num(num), name(name){
+    Item(string name) : name(name) {
+        cout << "Item(string)" << endl;
+    }
+    Item(int num, string name) : num(num), name(name) {
         cout << "Item(int ,string)" << endl;
     }
-    
-    void print(){
+
+    operator int() {
+        return num;
+    }
+
+    void print() {
         cout << num << ":" << name << endl;
     }
-    
+
 private:
     int num;
     string name;
 };
 
-int main(){
+int main() {
     Item i1 = Item(1);
     Item i2(2);
     Item i3 = 3;
-    
-    i3 = 3; //임시 객체에 3넣어서 i3에 다시 넣음 (묵시적 변환)
-    Item i4 = (Item)4; //변환생성자가 int를 Item으로 변경 (명시적 변환) (Item)을 써줌
+
+    i3 = 3;
+    Item i4 = (Item)4;
 
     Item i5(5);
-    i5 = (string)"tree"; //일단 int로 만들고 string으로 바꾸기
-    
-    Item i6(1,"grass");
-    
-    Item i7 = {2,"dirt"};
-    i7={2,"dirt"};
-    
+    i5 = (string)"tree";
+
+    Item i6(1, "grass");
+
+    Item i7 = { 2, "dirt" };
+    i7 = { 2, "dirt" };
+
+    Item i8 = { 3, "wood" };
+
     i1.print();
     i2.print();
     i3.print();
@@ -47,4 +52,5 @@ int main(){
     i5.print();
     i6.print();
     i7.print();
+    i8.print();
 }
