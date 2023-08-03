@@ -1,64 +1,65 @@
 #include <iostream>
 #include <string>
-
 using namespace std;
 
-class Item{
+class Item {
 public:
-    Item (int num) : num(num){
+    Item(int num) : num(num) {
         cout << "Item(int)" << endl;
     }
-    Item (string name) : name(name){
-        cout << "Item(string)"<<endl;
+    Item(string name) : name(name) {
+        cout << "Item(string)" << endl;
     }
-    Item(int num, string name) : num(num), name(name){
+    Item(int num, string name) : num(num), name(name) {
         cout << "Item(int ,string)" << endl;
     }
-    
-    //explicit 붙여주면 명시적변환만 써야한다
-    operator int() const {
+
+    explicit operator int() const { // 명시적 형병환 필수
         return num;
-    } //int로의 형변환 연산자 오버로딩
-    
+    }
     operator string() const {
-        return to_string(num)/*숫자를 문자열로 변환*/ + " : " + name;
-    } //string으로 형변환
-    
-    void print(){
+        return to_string(num) + " : " + name;
+    }
+
+    void print() {
         cout << num << ":" << name << endl;
     }
-    
+
 private:
     int num;
     string name;
 };
 
-void println(string s){
+void println(string s) {
     cout << s << endl;
 }
+void println(int n) {
+    cout << n << endl;
+}
 
-
-int main(){
+int main() {
     Item i1 = Item(1);
     Item i2(2);
     Item i3 = 3;
-    
+
     i3 = 3;
     Item i4 = (Item)4;
-    
+
     Item i5(5);
     i5 = (string)"tree";
-    
-    Item i6(1,"grass");
-    
-    Item i7 = {2,"dirt"};
-    i7={2,"dirt"};
-    
-    int itemNum1 = (int)i7; //명시적
-    int itemNum2 = i6; //묵시적 (int 형변환 선언 됐기 때문에 사용 가능)
+
+    Item i6(1, "grass");
+
+    Item i7 = { 2, "dirt" };
+    i7 = { 2, "dirt" };
+
+    Item i8 = { 3, "wood" };
+
+    int itemNum1 = (int)i8;
+    // int itemNum2 = i7;
     cout << itemNum1 << endl;
-    cout << itemNum2 << endl;
-    
-    println((string)i7);
-    println(i6); //묵시적
+    // cout << itemNum2 << endl;
+
+    println((string)i8);
+    println((int)i7);
 }
