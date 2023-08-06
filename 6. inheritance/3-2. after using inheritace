@@ -1,78 +1,72 @@
-//상속이 필요한 이유
-//메시지
 //텍스트
 //이미지
 
 #include <iostream>
 #include <string>
-
 using namespace std;
 
 class Image {
 public:
-    operator string () {
-        return "사진";
-    }
+	operator string() {
+		return "사진";
+	}
 };
 
-class Message{
+class Message {
 public:
-    Message(int sendTime, string sendName){
-        this->sendTime = sendTime;
-        this->sendName = sendName;
-    }
-    
-    int GetSendTime() const {return sendTime;}
-    string GetSendName() const {return sendName;}
+	Message(int sendTime, string sendName) {
+		this->sendTime = sendTime;
+		this->sendName = sendName;
+	}
 
+	int GetSendTime() const { return sendTime; }
+	string GetSendName() const { return sendName; }
 private:
-    int sendTime;
-    string sendName;    
+	int sendTime;
+	string sendName;
 };
 
 class TextMessage : public Message {
 public:
-    TextMessage(int sendTime, string sendName, string text)
-    : Message(sendTime, sendName){
-        this->text = text;
-    }
-    string GetText() const {return  text;}
+	TextMessage(int sendTime, string sendName, string text) : Message(sendTime, sendName) {
+		this->text = text;
+	}
+
+	string GetText() const { return text; }
+
 
 private:
-    string text;
+	string text;
 };
 
 class ImageMessage : public Message {
 public:
-    ImageMessage(int sendTime, string sendName, Image *image)
-    : Message(sendTime,sendName) {
-        this->image = image;
-    }
-    
-    Image *Getimage() const {return image;}
-    
+	ImageMessage(int sendTime, string sendName, Image* image) : Message(sendTime, sendName) {
+		this->image = image;
+	}
+
+	Image* GetImage() const { return image; }
+
 private:
-    Image *image;
+	Image* image;
 };
 
 int main() {
-    // A: "ㅎㅇ"
-    // A: "A 사진"
-    
-    Image *p_image = new Image();
-    TextMessage *hello = new TextMessage(10, "A", "ㅎㅇ");
-    ImageMessage *image = new ImageMessage(20, "A", p_image);
-    
-    cout << "보낸 시간 : " << hello->GetSendTime() << endl;
-    cout << "보낸 사람 : " << hello->GetSendName() << endl;
-    cout << " 내   용  : " << hello->GetText() << endl;
-    cout << '\n' << endl;
-    cout << "보낸 시간 : " << image->GetSendTime() << endl;
-    cout << "보낸 사람 : " << image->GetSendName() << endl;
-    cout << " 내   용  : " << (string)*image->Getimage() << endl;
-    
-    
-    delete hello;
-    delete image;
-    delete p_image;
-} //공통 멤버를 관리하기 
+	Image* p_dogImage = new Image();
+	TextMessage* hello = new TextMessage(10, "JaH", "ㅎㅇ");
+	ImageMessage* dog = new ImageMessage(11, "JaH", p_dogImage);
+
+	cout << "보낸 시간 : " << hello->GetSendTime() << endl;
+	cout << "보낸 사람 : " << hello->GetSendName() << endl;
+	cout << "보낸 내용 : " << hello->GetText() << endl;
+	cout << endl;
+
+	cout << "보낸 시간 : " << dog->GetSendTime() << endl;
+	cout << "보낸 사람 : " << dog->GetSendName() << endl;
+	cout << "보낸 내용 : " << (string)*dog->GetImage() << endl;
+	cout << endl;
+
+	delete hello;
+	delete dog;
+	delete p_dogImage;
+}
