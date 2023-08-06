@@ -3,13 +3,11 @@
 //private : 외부 접근 X  자식 클래스 X
 
 #include <iostream>
-
 using namespace std;
 
-class Base{
+class Base {
 public:
     int bPublic;
-    
 protected:
     int bProtected;
 private:
@@ -19,11 +17,11 @@ private:
 class Derived : public Base {
 public:
     int dPublic;
-    
-    void DFunc(){
+
+    void DFunc() {
         bPublic = 1;
         bProtected = 2;
-        /* bPrivate 자식 함수에서는 접근불가 */
+        //bPrivate = 3;
         dPublic = 4;
         dPrivate = 5;
     }
@@ -35,16 +33,17 @@ private:
 int main() {
     Base b;
     Derived d;
-    
+
     b.bPublic = 5;
-    /* b.bProtected
-       b.bprivate 접근 불가*/
-    
+    //b.bProtected = 3;
+    //b.bPrivate = 4;
+
     d.bPublic = 2;
-    /* d.bProtected
-       d.bprivate 접근 불가*/
+    //d.bProtected = 3;
+    //d.bPrivate = 4;
     d.dPublic = 3;
-    /* d.private 접근 불가*/
+    //d.dPrivate = 5;
+
     d.DFunc();
     std::cout << b.bPublic << std::endl;
     std::cout << d.bPublic << std::endl;
