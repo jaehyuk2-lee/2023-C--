@@ -1,0 +1,31 @@
+#include <iostream>
+using namespace std;
+
+class Base {
+public:
+	int a = 10;
+	void print() {
+		cout << "From Base" << endl;
+	}
+};
+
+class Derived : public Base {
+public:
+	int a = 20;
+	void print() {
+		cout << "From Derived" << endl;
+	}
+};
+
+int main() {
+	Base b;
+	Derived d;
+
+	cout << b.a << endl;
+	cout << d.a << endl; // 모호한 변수 이름 -> 고유의 변수 우선 출력 (override)
+	cout << d.Base::a << endl;
+
+	b.print();
+	d.print();
+	d.Base::print();
+}
