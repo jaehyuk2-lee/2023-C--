@@ -1,0 +1,67 @@
+#include <iostream>
+using namespace std;
+
+class Weapon {
+public:
+	Weapon(int power) : power(power) {
+		cout << "Weapon(int)" << endl;
+	}
+
+	virtual void Use() {
+		cout << "Weapon::Use()" << endl;
+	} //실행시점에 어떻게 실행 할지 결정 (가상함수)
+
+protected:
+	int power;
+};
+
+class Sword : public Weapon {
+public:
+	Sword(int power) : Weapon(power) {
+		cout << "Sword(int)" << endl;
+	}
+
+	void Use() {
+		cout << "Sword::Use()" << endl;
+		Swing();
+	}
+
+private:
+	void Swing() {
+		cout << "Swing Sword" << endl;
+	}
+};
+
+class Wand : public Weapon {
+public:
+	Wand(int power, int manaCost) : Weapon(power), manaCost(manaCost) {
+		cout << "Wand(int, int)" << endl;
+	}
+
+	void Use() {
+		cout << "Wand :: Use" << endl;
+		Cast();
+	}
+
+private:
+	void Cast() {
+		cout << "Cast Spell" << endl;
+	}
+	int manaCost;
+};
+
+int main() {
+	Sword mySword(10);
+	Wand myWand(15, 7);
+
+	mySword.Use();
+	myWand.Use();
+
+	Weapon* currentWeapon;
+
+	currentWeapon = &mySword;
+	currentWeapon->Use();
+
+	currentWeapon = &myWand;
+	currentWeapon->Use();
+}
