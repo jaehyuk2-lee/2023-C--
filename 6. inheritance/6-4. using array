@@ -72,5 +72,8 @@ int main() {
 	    printMessage(*m);
 	}
 	
+	for (Message *m : messages) {
+	    delete m;
+	}
 	delete p_dogImage;
 }
