@@ -1,0 +1,45 @@
+#include <iostream>
+using namespace std;
+
+class Ice {
+public:
+    Ice() { cout << "Ice()" << endl; }
+    ~Ice() { cout << "~Ice()" << endl; }
+};
+
+class Pat {
+public:
+    Pat() { cout << "Pat()" << endl; }
+    ~Pat() { cout << "~Pat()" << endl; }
+};
+
+class Bingsoo {
+public:
+    Bingsoo() { cout << "Bingsoo()" << endl; 
+        ice = new Ice;
+    }
+    virtual ~Bingsoo() { cout << "~Bingsoo()" << endl; 
+        delete ice;
+    } //가르키고 있는 소멸자 호출
+    
+private:
+    Ice *ice;
+};
+
+class PatBingsoo : public Bingsoo {
+public:
+    PatBingsoo() { cout << "PatBingsoo()" << endl; 
+        pat = new Pat;
+    }
+    ~PatBingsoo() { cout << "~PatBingsoo()" << endl; 
+        delete pat;
+    }
+    
+private:
+    Pat *pat;
+};
+
+int main() {
+    Bingsoo *p = new PatBingsoo;
+    delete p; //동적 바인딩으로 소멸자 호출
+}
