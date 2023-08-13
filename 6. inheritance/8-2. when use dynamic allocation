@@ -1,0 +1,41 @@
+#include <iostream>
+using namespace std;
+
+class Ice {
+public:
+    Ice() { cout << "Ice()" << endl; }
+    ~Ice() { cout << "~Ice()" << endl; }
+};
+
+class Pat {
+public:
+    Pat() { cout << "Pat()" << endl; }
+    ~Pat() { cout << "~Pat()" << endl; }
+};
+
+class Bingsoo {
+public:
+    Bingsoo() { cout << "Bingsoo()" << endl; 
+        ice = new Ice; //멤버 생성
+    }
+    ~Bingsoo() { cout << "~Bingsoo()" << endl; 
+        delete ice;
+    }
+    
+private:
+    Ice *ice; //포인터 생성 (멤버 생성 X)
+};
+
+class PatBingsoo : public Bingsoo {
+public:
+    PatBingsoo() { cout << "PatBingsoo()" << endl; }
+    ~PatBingsoo() { cout << "~PatBingsoo()" << endl; }
+    
+private:
+    Pat pat;
+};
+
+int main() {
+    PatBingsoo *p = new PatBingsoo;
+    delete p;
+}
