@@ -1,0 +1,37 @@
+#include <iostream>
+using namespace std;
+
+class Ice {
+public:
+    Ice() { cout << "Ice()" << endl; }
+    ~Ice() { cout << "~Ice()" << endl; }
+};
+
+class Pat {
+public:
+    Pat() { cout << "Pat()" << endl; }
+    ~Pat() { cout << "~Pat()" << endl; }
+};
+
+class Bingsoo {
+public:
+    Bingsoo() { cout << "Bingsoo()" << endl; } //생성자는 멤버 초기화
+    ~Bingsoo() { cout << "~Bingsoo()" << endl; }
+    
+private:
+    Ice ice; //멤버 먼저 생성
+};
+
+class PatBingsoo : public Bingsoo {
+public:
+    PatBingsoo() { cout << "PatBingsoo()" << endl; }
+    ~PatBingsoo() { cout << "~PatBingsoo()" << endl; }
+    //멤버가 동적할당 돼 있을 경우 소멸자를 먼저 실행해 delete 하는 것이 맞다.
+private:
+    Pat pat;
+};
+
+int main() {
+    PatBingsoo *p = new PatBingsoo;
+    delete p; //소멸은 생성의 역순
+}
