@@ -13,7 +13,7 @@ public:
     float z = 3;
 };
 
-void PrintPosition (Animal *a[], int n) {
+void PrintPosition (Animal **a, int n) {
     for(int i = 0; i < n; i++) {
         cout << "(" << a[i]->x << ", " << a[i]->y << ")" << endl;
      }
