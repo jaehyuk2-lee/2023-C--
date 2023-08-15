@@ -1,4 +1,4 @@
-//upcasting : 자식 클래스 포인터 -> 부모 클래스 포인터 (묵시적) ex)총각 -> 남자
+//upcasting : 자식을 부모에 할당 (묵시적) ex)총각 -> 남자
 #include <iostream>
 using namespace std;
 
