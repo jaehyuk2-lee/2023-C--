@@ -1,0 +1,35 @@
+// RTTI (Run Time Type Information)
+// 다형 클래스 : 가상 함수 1개 이상 존재
+
+#include <iostream>
+using namespace std;
+
+class Base {
+public:
+    virtual void f() {} //가상함수 정보 추가
+    int x = 10;
+};
+
+class Derived : public Base {
+public:
+    void f() {}
+    int y = 20;
+};
+
+int main() {
+    cout << sizeof(Base) << endl;
+    cout << sizeof(Derived) << endl;
+    
+    int* a = (int*)new Base; //객체주소, 함수주소, 변수주소
+    cout << a[0] << " " << a[1] << " " << a[2] << endl;
+    
+    int* b = (int*)new Derived;
+    cout << b[0] << " " << b[1] << " " << b[2] << " " << b[3] << endl;
+    
+    int* c = (int*)new Derived;
+    cout << c[0] << " " << c[1] << " " << c[2] << " " << c[3] << endl;
+    
+    delete a;
+    delete b;
+    delete c;
+}
