@@ -1,9 +1,6 @@
-// static_cast 형변환이 올바른지 확인해줌
-// double -> int / int -> double
-// 업캐스팅 / 다운캐스팅 : 부모 클래스 -> 자식 클래스 형변환
-
+// static_cast : 컴파일 시간에 캐스팅 -> 가능한 형변환인지 판별
+// downcasting : 부모를 자식에 할당
 #include <iostream>
-
 using namespace std;
 
 class Base {
@@ -14,27 +11,17 @@ public:
 class Drv1 : public Base {
 public:
     void f() {
-        cout << "Drv1::f()" <<endl;
+        cout << "Drv1::f()" << endl;
         cout << b << endl;
     }
     
     float b = 3.14;
 };
 
-class Drv2 : public Base {
-public:
-    void f() {
-        cout << "Drv2::f()" <<endl;
-        cout << c << endl;
-    }
-    
-    int c = 3;
-};
-
-int main(){
-    Base *b = new Drv2; //Drv1을 가르키면 원하는 값 출력 x
-    Drv2 *d2 = static_cast<Drv2*>(b);
-    d2->f();
+int main() {
+    Base* b = new Drv1;
+    Drv1* d1 = static_cast<Drv1*> (b);
+    d1->f();
     
     delete b;
 }
