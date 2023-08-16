@@ -8,8 +8,8 @@ class Shape {
 public:
 	virtual ~Shape() {}
 	virtual double GetArea() const = 0;
-	virtual void Resize(double factor) = 0;
 	virtual double GetDiag() const = 0;
+	virtual void Resize(double factor) = 0;
 };
 
 class Circle : public Shape {
@@ -19,10 +19,12 @@ public:
 	double GetArea() const {
 		return r * r * PI;
 	}
+	double GetDiag() const {
+	    return 0;
+	}
 	void Resize(double factor) {
 		r *= factor;
 	}
-	double GetDiag() const {return 0;}
 
 private:
 	double r;
@@ -52,13 +54,14 @@ int main() {
 	Shape *shapes[] = { new Circle(1), new Rectangle(1, 2) };
 
 	for (Shape *s : shapes) {
+	    
 		cout << "도형의 넓이 : " << s->GetArea() << endl;
-		if (s->GetDiag() != 0) {
-			cout << "대각선의 길이 : " << s->GetDiag() << endl;
+		if( s->GetDiag() != 0 ){
+		    cout << "대각선의 길이 : " << s->GetDiag() << endl;
 		}
 	}
 	
 	for (Shape *s : shapes) {
 		delete s;
 	}
-} //맞았음
+} //맞았다고 생각함
