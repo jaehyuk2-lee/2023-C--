@@ -1,0 +1,32 @@
+#include <iostream>
+using namespace std;
+
+class Animal {
+public:
+    float x = 1;
+    float y = 2;
+};
+
+class FlyingAnimal : public Animal {
+public:
+    float z = 3;
+};
+
+void PrintPosition (Animal **a, int n) {
+    for(int i = 0; i < n; i++) {
+        FlyingAnimal* f = static_cast<FlyingAnimal*>(a[i]); //z를 출력 시키기위해 다운 캐스팅
+        cout << "(" << f->x << ", " << f->y << ", " << f->z << ")" << endl;
+     }
+}
+
+int main() {
+    Animal **a = new Animal*[10];
+    for(int i = 0; i < 10; i++) {
+        a[i] = new FlyingAnimal;
+    }
+    PrintPosition(a, 10);
+    for(int i = 0; i < 10; i++) {
+        delete a[i];
+    }
+    delete[] a;
+}
