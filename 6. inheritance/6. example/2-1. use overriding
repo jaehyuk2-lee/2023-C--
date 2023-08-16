@@ -8,7 +8,7 @@ class Shape {
 public:
 	virtual ~Shape() {}
 	virtual double GetArea() const = 0;
-	virtual double GetDiag() const = 0;
+	virtual double GetDiag() const { return 0; }
 	virtual void Resize(double factor) = 0;
 };
 
@@ -41,7 +41,6 @@ public:
 		a *= factor;
 		b *= factor;
 	}
-
 	double GetDiag() const {
 		return sqrt(a * a + b * b);
 	}
@@ -54,7 +53,6 @@ int main() {
 	Shape *shapes[] = { new Circle(1), new Rectangle(1, 2) };
 
 	for (Shape *s : shapes) {
-	    
 		cout << "도형의 넓이 : " << s->GetArea() << endl;
 		if( s->GetDiag() != 0 ){
 		    cout << "대각선의 길이 : " << s->GetDiag() << endl;
