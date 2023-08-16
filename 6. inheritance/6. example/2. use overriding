@@ -64,4 +64,4 @@ int main() {
 	for (Shape *s : shapes) {
 		delete s;
 	}
-} //맞았다고 생각함
+} //맞음
