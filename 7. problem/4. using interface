@@ -1,0 +1,33 @@
+//인터페이스 : 모든 메서드가 가상함수이고 멤버 변수는 없는 클래스
+#include <iostream>
+using namespace std;
+
+struct IPerson {
+    virtual ~IPerson() {}
+    virtual void Eat() = 0;
+};
+struct IStudent : virtual IPerson {
+    virtual void Study() = 0;
+};
+struct IWorker : virtual IPerson {
+    virtual void Work() = 0;
+};
+struct Researcher : IStudent, IWorker {
+    void Eat() {
+        cout << "먹는다" << endl;
+    }
+    void Study() {
+        cout << "공부한다" << endl;
+    }
+    void Work() {
+        cout << "일한다" << endl;
+    }
+    
+    int age;
+};
+
+int main() {
+    Researcher r;
+    r.age = 23;
+    r.Eat();
+}
