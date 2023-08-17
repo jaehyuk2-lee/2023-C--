@@ -5,6 +5,7 @@ using namespace std;
 struct IPerson {
     virtual ~IPerson() {}
     virtual void Eat() = 0;
+    virtual int GetAge() = 0;
 };
 struct IStudent : virtual IPerson {
     virtual void Study() = 0;
@@ -22,12 +23,12 @@ struct Researcher : IStudent, IWorker {
     void Work() {
         cout << "일한다" << endl;
     }
-    
-    int age;
+    int GetAge() { return age; }
+    int age = 10;
 };
 
 int main() {
-    Researcher r;
-    r.age = 23;
-    r.Eat();
+    IPerson *p = new Researcher;
+    p->GetAge();
+    p->Eat();
 }
