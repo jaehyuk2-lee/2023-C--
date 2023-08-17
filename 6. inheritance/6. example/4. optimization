@@ -17,20 +17,21 @@ const char* const LEVEL_HEADINGS[] = {
 
 class Logger {
 public:
-    Logger(int minLevel) : minLevel(minLevel){}
-    virtual ~Logger() {}
-    
-    virtual void Log(const string &s, int level){
-        if (level >= minLevel){
-            doLogJob(s, level);
-        }
-    };
-    
-    int GetMinLevel() {return minLevel;}
-    
+	Logger(int minLevel) : minLevel(minLevel) {}
+	virtual ~Logger() {}
+
+	void Log(const string &s, int level) {
+		if (level >= minLevel)
+			doLogJob(s, level);
+	}
+
+	int GetMinLevel() const { return minLevel; }
+
 protected:
-    virtual void doLogJob(const string &s, int level) = 0;
-    int minLevel;
+	virtual void doLogJob(const string &s, int level) = 0;
+
+private:
+	int minLevel;
 };
 
 class FileLogger : public Logger {
@@ -43,10 +44,10 @@ public:
 	}
 
 protected:
-    void doLogJob(const string &s, int level){
-        fprintf(logFile, "[%s] %s\n", LEVEL_HEADINGS[level], s.c_str());
-    }
-    
+	void doLogJob(const string &s, int level) {
+		fprintf(logFile, "[%s] %s\n", LEVEL_HEADINGS[level], s.c_str());
+	}
+
 private:
 	FILE *logFile;
 };
@@ -56,12 +57,12 @@ public:
 	ConsoleLogger(int minLevel) : Logger(minLevel) {}
 
 protected:
-    void doLogJob(const string &s, int level){
-        printf("[%s] %s\n", LEVEL_HEADINGS[level], s.c_str());
-    }
+	void doLogJob(const string &s, int level) {
+		printf("[%s] %s\n", LEVEL_HEADINGS[level], s.c_str());
+	}
 };
 
-void testLogger(Logger &logger){
+void testLogger(Logger &logger) {
     logger.Log("abc", LogLevels::ERROR);
 	logger.Log("def", LogLevels::INFO);
 	logger.Log("ghi", LogLevels::WARNING);
