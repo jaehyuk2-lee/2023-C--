@@ -3,6 +3,7 @@ using namespace std;
 
 struct Person {
     int age;
+    virtual ~Person() {}
     void Eat(){
         cout << "먹는다" << endl;
     }
@@ -13,7 +14,7 @@ struct Student : Person {
     }
 };
 struct Worker : Person {
-    void Study(){
+    void Work(){
         cout << "일한다" << endl;
     }
 };
@@ -28,6 +29,5 @@ int main() {
     r.Eat(); //Eat의 성분도 2개이기 때문에 정해줘야함 Student::Eat()
     //위와 같은 이유로 가상함수 설정이 모호해서 불가능함 (89강 확인) 가상상속으로 해결
 }
-
 //제약을 통한 해결 : 다중상속은 인터페이스로 부터만 받는다
 //인터 페이스 : 모든 메서드가 가상함수이고 멤버 변수는 없는 클래스
