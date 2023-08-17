@@ -81,4 +81,4 @@ int main() {
 	f.Log("abc", LogLevels::ERROR);
 	f.Log("def", LogLevels::INFO);
 	f.Log("ghi", LogLevels::WARNING);
-} //다시 해보기 88강
+} //다시 풀기 88강
