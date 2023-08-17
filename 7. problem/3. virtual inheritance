@@ -28,3 +28,4 @@ int main() {
     r.Eat();
     r.Study();
 }
+// Student나 Worker에 오버라이딩을 해버리면 모호해져서 사용불가
