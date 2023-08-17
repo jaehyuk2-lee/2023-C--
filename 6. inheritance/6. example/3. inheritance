@@ -1,3 +1,4 @@
+
 #include <iostream>
 #include <stdio.h>
 #include <string>
@@ -17,17 +18,21 @@ const char* const LEVEL_HEADINGS[] = {
 
 class Logger {
 public:
-    Logger(int minLevel) : minLevel(minLevel) {}
-    virtual ~Logger() {}
-    
-    virtual void Log(const string &s, int level) {
-        if (level >= minLevel){
-            doLog(s, level);
-        }
-    }
+	Logger(int minLevel) : minLevel(minLevel) {}
+	virtual ~Logger() {}
+
+	void Log(const string &s, int level) {
+		if (level >= minLevel)
+			doLogJob(s, level);
+	}
+
+	int GetMinLevel() const { return minLevel; }
+
 protected:
-    int minLevel;
-    virtual void doLog(const string &s, int level) = 0;
+	virtual void doLogJob(const string &s, int level) = 0;
+
+private:
+	int minLevel;
 };
 
 class FileLogger : public Logger {
@@ -39,17 +44,10 @@ public:
 		fclose(logFile);
 	}
 
-	void Log(const string &s, int level) {
-		if (level >= minLevel)
-    		doLog(s, level);
-	}
-	
-	int GetMinLevel() const { return minLevel; }
-	
 protected:
-    void doLog(const string &s, int level) {
-        fprintf(logFile, "[%s] %s\n", LEVEL_HEADINGS[level], s.c_str());
-    }
+	void doLogJob(const string &s, int level) {
+		fprintf(logFile, "[%s] %s\n", LEVEL_HEADINGS[level], s.c_str());
+	}
 
 private:
 	FILE *logFile;
@@ -57,18 +55,12 @@ private:
 
 class ConsoleLogger : public Logger {
 public:
-    ConsoleLogger(int minLevel) : Logger(minLevel) {}
-	void Log(const string &s, int level) {
-		if (level >= minLevel)
-		doLog(s, level);	
-	}
-	
-	int GetMinLevel() const { return minLevel; }
-	
+	ConsoleLogger(int minLevel) : Logger(minLevel) {}
+
 protected:
-    void doLog(const string &s, int level) {
-        printf("[%s] %s\n", LEVEL_HEADINGS[level], s.c_str());
-    }
+	void doLogJob(const string &s, int level) {
+		printf("[%s] %s\n", LEVEL_HEADINGS[level], s.c_str());
+	}
 };
 
 int main() {
@@ -81,4 +73,4 @@ int main() {
 	f.Log("abc", LogLevels::ERROR);
 	f.Log("def", LogLevels::INFO);
 	f.Log("ghi", LogLevels::WARNING);
-} //다시 풀기 88강
+} //88강 다시풀기
