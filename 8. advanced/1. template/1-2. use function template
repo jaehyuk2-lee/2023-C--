@@ -1,4 +1,5 @@
 #include <iostream>
+#include <string>
 using namespace std;
 
 class Vector {
@@ -19,7 +20,7 @@ private:
 
 template <typename T>
 T GetArrSum (const T* arr, int n) {
-    T sum = arr[0] ;
+    T sum = arr[0]; //T() 기본생성자로 대입 가능 (반복문 0부터)
     for(int i = 1; i < n; i++) {
         sum += arr[i];
     }
@@ -29,11 +30,13 @@ T GetArrSum (const T* arr, int n) {
 int main() {
     int    arr[5] = { 3, 1, 4, 1, 5 };
     float  farr[5] = { 3.1, 1.2, 4.3, 1.4, 5.5 };
+    string sarr[3] = { "재 ", "혁 ", "리 " };
     
     Vector varr [3] = { Vector(1, 2) ,Vector(3, 4), Vector(5, 6) };
     Vector vsum = GetArrSum(varr, 3);
     
     cout << GetArrSum(arr, 5) << endl;
     cout << GetArrSum(farr, 5) << endl;
+    cout << GetArrSum(sarr, 3) << endl;
     cout << vsum.GetX() << ", " << vsum.GetY() << endl;
 }
