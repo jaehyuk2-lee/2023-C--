@@ -55,7 +55,7 @@ public:
     return *this;
     }
     
-    String &operator+(String &rhs) {
+    String operator+(String &rhs) {
         if(this != &rhs) {
             len += rhs.len;
             strcat(strData, rhs.strData);
@@ -101,7 +101,7 @@ int main() {
     cout << "====4====" << endl;
     
     String b = "yuk";
-    a + b;
+    String c = a + b;
     
-    cout << a.GetStrData() << endl;
+    cout << c.GetStrData() << endl;
 }
