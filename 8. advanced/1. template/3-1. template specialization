@@ -1,10 +1,10 @@
 #include <iostream>
-#include <string>
+#include <string.h>
 using namespace std;
 
 template<typename T>
-T getArraySum(const T arr[], int n) {
-    cout << "템플릿" << endl;
+T GetArrSum(const T arr[], int n) {
+    cout << "템플릿: ";
     T sum = arr[0];
     for(int i = 1; i < n; i++){
         sum += arr[i];
@@ -12,10 +12,9 @@ T getArraySum(const T arr[], int n) {
     return sum;
 }
 
-//템플릿 특수화
-template<>
-string getArraySum(const string arr[], int n) {
-    cout << "특수화" << endl;
+template<> //특수화
+string GetArrSum<string>(const string arr[], int n){
+    cout << "특수화: ";
     string sum = arr[0];
     for(int i = 1; i < n; i++){
         sum += ' ' + arr[i];
@@ -24,11 +23,10 @@ string getArraySum(const string arr[], int n) {
 }
 
 int main() {
-    string sarr[3] = { "abc", "def", "ghi" };
-    string ssum = getArraySum(sarr, 3);
+    string sarr[3] = { "재", "혁", "리" };
+    string ssum = GetArrSum(sarr, 3);
     cout << ssum << endl;
     
-    int iarr[5] = {3, 1, 4, 1, 5 };
-    int isum = getArraySum(iarr, 5);
-    cout << isum << endl;
+    int arr[3] = { 1, 2, 3 };
+    cout << GetArrSum(arr, 3) << endl;
 }
