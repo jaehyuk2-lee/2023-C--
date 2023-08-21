@@ -1,4 +1,5 @@
 #include <iostream>
+#include <string.h>
 using namespace std;
 
 int fact(int n) {
@@ -11,11 +12,11 @@ int main() {
     cin >> n;
     try{
         if (n < 0) {
-            throw n;
+            throw to_string(n) + " : 음수";
         }
         cout << n << "! = " << fact(n) << endl;
     }
-    catch (int e) {
-        cout << e << " : 음수" << endl;
+    catch (const string &e) {
+        cout << e << endl;
     }
 }
