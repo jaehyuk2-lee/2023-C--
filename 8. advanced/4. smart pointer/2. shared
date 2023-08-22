@@ -19,6 +19,6 @@ int main() {
         shared_ptr<Test> b = a;
         cout << a.use_count() << endl; //메모리 소유하는 변수의 개수
         cout << b.use_count() << endl;
-    }
+    } //b 소멸
     cout << a.use_count() << endl;
 }
