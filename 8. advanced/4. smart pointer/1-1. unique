@@ -12,6 +12,7 @@ public:
     }
 };
 
+//unique_ptr : 1대1 대응 포인터
 int main() {
     cout << "main 시작" << endl;
     unique_ptr<Test> a(new Test);
