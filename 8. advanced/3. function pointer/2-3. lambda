@@ -1,22 +1,20 @@
 #include <iostream>
-#include <functional>
 using namespace std;
 
 template<typename T>
-int arrFn(const int arr[], const int n, T f){
+int ArrFnMin(const int arr[], int n, T f) {
     int min = f(arr[0]);
-    for(int i=1; i < n; i++){
-        if(f(arr[i]) < min) min =f(arr[i]);
+    for(int i = 1; i < n; i++) {
+        if(f(arr[i]) <= min) min = f(arr[i]);
     }
     return min;
 }
 
 int main() {
-    int arr[7] = { 3, 1, -4, 1, 5, 9, -2 };
-    auto fp = [](int n) -> int {return n * n;};
-    //자동으로 자료형 정해줌 int (*fp)(int) = [](int n) -> int {return n * n;};
-    
-    cout << arrFn(arr, 7, [](int n) -> int {return n;}) << endl;
-    cout << arrFn(arr, 7, [](int n) -> int {return n * n;}) << endl;
-    cout << arrFn(arr, 7, [](int n) -> int {return 3 *n - 1;}) << endl;
+    int arr[5] = {4, 2, 3, -2, -1};
+    //람다식 (익명 함수)
+    //int (*fp)(int) = [](int n) -> int { return n * n;}
+    cout << ArrFnMin(arr, 5, [](int n) -> int { return n;}) << endl;
+    cout << ArrFnMin(arr, 5, [](int n) -> int { return n * n;}) << endl;
+    cout << ArrFnMin(arr, 5, [](int n) -> int { return n * (n - 15) / 2;}) << endl;
 }
