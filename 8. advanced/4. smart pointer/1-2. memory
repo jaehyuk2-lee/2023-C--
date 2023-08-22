@@ -31,6 +31,4 @@ int main() {
     
     cout << "main 종료" << endl;
 }
-
-//unique_ptr은 1대1 대응이다
 //메모리 소유권 : 메모리 해제 의무
