@@ -1,34 +1,34 @@
 #include <iostream>
-#include <functional>
 using namespace std;
 
 class None {
 public:
-    int operator()(int x) {return x;}
+    int operator()(int x) { return x; }
 } none;
 
 class Square {
 public:
-    int operator()(int x) {return x * x;}
+    int operator()(int x) { return x * x; }
 } square;
 
-class myFunc {
+class Func {
 public:
-    int operator()(int x) {return 3 * x - 1;}
-} myFunc;
+    int operator()(int x) { return x * (x - 15) / 2; }
+} func;
 
 template<typename T>
-int arrFn(const int arr[], const int n, T f){
+int ArrFnMin(const int arr[], int n, T f) {
     int min = f(arr[0]);
-    for(int i=1; i < n; i++){
-        if(f(arr[i]) < min) min =f(arr[i]);
+    for(int i = 1; i < n; i++) {
+        if(f(arr[i]) <= min) min = f(arr[i]);
     }
     return min;
 }
 
 int main() {
-    int arr[7] = { 3, 1, -4, 1, 5, 9, -2 };
-    cout << arrFn(arr, 7, none) << endl;
-    cout << arrFn(arr, 7, square) << endl;
-    cout << arrFn(arr, 7, myFunc) << endl;
+    int arr[5] = {4, 2, 3, -2, -1};
+    
+    cout << ArrFnMin(arr, 5, none) << endl;
+    cout << ArrFnMin(arr, 5, square) << endl;
+    cout << ArrFnMin(arr, 5, func) << endl;
 }
