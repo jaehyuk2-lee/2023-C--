@@ -1,0 +1,25 @@
+#include <iostream>
+using namespace std;
+
+int ArrFnMin(const int arr[], int n, int (*f)(int)) {
+    int min = f(arr[0]);
+    for(int i = 1; i < n; i++) {
+        if(f(arr[i]) <= min) min = f(arr[i]);
+    }
+    return min;
+}
+
+int Square(int a) {
+    return a * a;
+}
+
+int Func(int a) {
+    return a * (a - 15) / 2;
+}
+
+int main() {
+    int arr[5] = {4, 2, 3, -2, -1};
+    
+    cout << ArrFnMin(arr, 5, Square) << endl;
+    cout << ArrFnMin(arr, 5, Func) << endl;
+}
