@@ -2,8 +2,6 @@
 #include <memory>
 using namespace std;
 
-//unique_ptr, shared_ptr, weak_ptr
-
 class Test {
 public:
     Test(int x) : x(x) {cout << "생성자" << endl;}
@@ -22,11 +20,14 @@ int main() {
         cout << a.use_count() << endl; 
         cout << b.use_count() << endl;
         if (!b.expired()){
-            cout << b.lock()->GetX() << endl;
-        }//a가 살아있을때만 참조 가능
-    }
-    cout << b.use_count() << endl; //a가 없어지면서 같이 사라짐, 이미 소멸된 위치 가르킴
+            cout << b.lock()->GetX() << endl; //a소멸 전 참조 가능
+        }
+    } //a소멸
+    
+    cout << b.use_count() << endl; //이미 소멸된 위치 가르킴
+    
     if (!b.expired()){
             cout << b.lock()->GetX() << endl;
         }
 }
+//weak_ptr : 소유권 없는 포인터
