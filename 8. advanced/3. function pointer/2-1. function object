@@ -1,3 +1,4 @@
+//객체를 함수처럼
 #include <iostream>
 using namespace std;
 
