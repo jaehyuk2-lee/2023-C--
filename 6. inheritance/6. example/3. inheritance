@@ -18,6 +18,7 @@ const char* const LEVEL_HEADINGS[] = {
 class Logger {
 public:
     Logger(int minLevel) : minLevel(minLevel) {}
+    virtual ~Logger() {}
 	int GetMinLevel() const { return minLevel; }
 	
     void Log(const string &s, int level) {
