@@ -17,21 +17,21 @@ const char* const LEVEL_HEADINGS[] = {
 
 class Logger {
 public:
-	Logger(int minLevel) : minLevel(minLevel) {}
-	virtual ~Logger() {}
-
-	void Log(const string &s, int level) {
-		if (level >= minLevel)
-			doLogJob(s, level);
-	}
-
+    Logger(int minLevel) : minLevel(minLevel) {}
+    virtual ~Logger() {}
 	int GetMinLevel() const { return minLevel; }
-
+	
+    void Log(const string &s, int level) {
+        if (level >= minLevel){
+            doLog(s, level);
+        }
+    }
+    
 protected:
-	virtual void doLogJob(const string &s, int level) = 0;
-
+    virtual void doLog(const string &s, int level) = 0;
+    
 private:
-	int minLevel;
+    int minLevel;
 };
 
 class FileLogger : public Logger {
@@ -44,9 +44,9 @@ public:
 	}
 
 protected:
-	void doLogJob(const string &s, int level) {
-		fprintf(logFile, "[%s] %s\n", LEVEL_HEADINGS[level], s.c_str());
-	}
+    void doLog(const string &s, int level) {
+        fprintf(logFile, "[%s] %s\n", LEVEL_HEADINGS[level], s.c_str());
+    }
 
 private:
 	FILE *logFile;
@@ -54,24 +54,22 @@ private:
 
 class ConsoleLogger : public Logger {
 public:
-	ConsoleLogger(int minLevel) : Logger(minLevel) {}
-
+    ConsoleLogger(int minLevel) : Logger(minLevel){}
+    
 protected:
-	void doLogJob(const string &s, int level) {
-		printf("[%s] %s\n", LEVEL_HEADINGS[level], s.c_str());
-	}
+    void doLog(const string &s, int level) {
+        printf("[%s] %s\n", LEVEL_HEADINGS[level], s.c_str());
+    }
 };
-
-void testLogger(Logger &logger) {
-    logger.Log("abc", LogLevels::ERROR);
-	logger.Log("def", LogLevels::INFO);
-	logger.Log("ghi", LogLevels::WARNING);
-}
 
 int main() {
 	ConsoleLogger c(LogLevels::WARNING);
-	testLogger(c);
-
+	c.Log("abc", LogLevels::ERROR);
+	c.Log("def", LogLevels::INFO);
+	c.Log("ghi", LogLevels::WARNING);
+    
 	FileLogger f(LogLevels::DEBUG, "log.txt");
-	testLogger(f);
-} //다시 풀기
+	f.Log("abc", LogLevels::ERROR);
+	f.Log("def", LogLevels::INFO);
+	f.Log("ghi", LogLevels::WARNING);
+}
