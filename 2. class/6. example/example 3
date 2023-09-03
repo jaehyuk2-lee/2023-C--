@@ -1,4 +1,4 @@
-//초 계산기
+//초계산기
 #include <iostream>
 using namespace std;
 
@@ -23,14 +23,22 @@ public:
             elap = 0;
         }
         else S = elap;
+        
+        if(T > 24) { 
+            while (T > 24) {
+                D++;
+                T-= 24;
+            }
+        }
     }
     
     void PrintTime() {
-        cout << T << "시 " << M << "분 " << S << "초" << endl;
+        if(D > 0) cout << D << "일 후, " << T << "시 " << M << "분 " << S << "초" << endl;
+        else cout << T << "시 " << M << "분 " << S << "초" << endl;
     }
     
 private:
-    int T, M, S;
+    int D, T, M, S;
 };
 
 int main() {
