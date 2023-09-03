@@ -1,0 +1,45 @@
+//초 계산기
+#include <iostream>
+using namespace std;
+
+class CTime {
+public:
+    void SetElapsed(int elap) {
+        if(elap >= 3600) {
+            T = elap/3600;
+            elap %= 3600;
+                
+            M = elap/60;
+            elap %= 60;
+        
+            S = elap;
+            elap = 0;
+        }
+        else if (elap < 3600 && elap >=60) {
+            M = elap/60;
+            elap %= 60;
+        
+            S = elap;
+            elap = 0;
+        }
+        else S = elap;
+    }
+    
+    void PrintTime() {
+        cout << T << "시 " << M << "분 " << S << "초" << endl;
+    }
+    
+private:
+    int T, M, S;
+};
+
+int main() {
+    cout << "자정으로 부터 지나간 초" << endl;
+    
+    int Elapsed;
+    cin >> Elapsed;
+    
+    CTime t;
+    t.SetElapsed(Elapsed);
+    t.PrintTime();
+} 
