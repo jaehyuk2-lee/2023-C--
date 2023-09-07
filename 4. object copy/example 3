@@ -1,0 +1,62 @@
+#include <iostream>
+using namespace std;
+
+class CInt {
+public:
+    CInt() {
+        m_Value = 0;
+    }
+    
+    CInt(int a) {
+        m_Value = a;
+    }
+    
+    CInt& operator= (const CInt& rhs) {
+        m_Value = rhs.m_Value;
+        return *this;
+    }
+    
+    CInt operator+ (int a) {
+        CInt t;
+        t.m_Value = this->m_Value + a;
+        return t;
+    }
+    
+    CInt operator+ (const CInt& rhs) {
+        CInt t;
+        t.m_Value = this->m_Value + rhs.m_Value;
+        return t;
+    }
+    
+    CInt& operator++ () {
+        m_Value++;
+        return *this;
+    }
+    
+    const CInt operator++ (int) {
+        CInt t = *this;
+        m_Value++;
+        return t;
+    }
+
+    int m_Value;
+};
+
+CInt operator+ (int a, const CInt& rhs) {
+    CInt t;
+    t.m_Value = rhs.m_Value + a;
+    return t;
+}
+
+int main() {
+    CInt i = 1;
+    cout << (i++).m_Value << endl;
+    
+    ++i = 2;
+    cout << (++i).m_Value << endl;
+    
+    
+    cout << (i++).m_Value << endl;
+    cout << (++i).m_Value << endl;
+    
+}
