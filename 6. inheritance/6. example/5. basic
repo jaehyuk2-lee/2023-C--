@@ -1,0 +1,66 @@
+#include <iostream>
+#include <string.h>
+using namespace std;
+
+class CPerson {
+public:
+    void Set(char* name, int age, int gender) {
+        strcat(m_Name, name);
+        m_Age = age;
+        m_Gender = gender;
+    }
+    
+    char* GetName() {
+        return m_Name;
+    }
+    
+    int GetAge() {
+        return m_Age;
+    }
+    
+    int GetGender() {
+        return m_Gender;
+    }
+
+private:
+    char m_Name[16] = { 0 };
+    int m_Age = 0;
+    int m_Gender = 0;
+};
+
+class CStudent : public CPerson {
+public:
+    void Set(char* name, int age, int gender, int id, char* major){
+        CPerson::Set(name, age, gender);
+        m_ID = id;
+        strcat(m_Major, major);
+    }
+    
+    void Print() {
+        cout << "------------------" << endl;
+        cout << "이름: " << GetName() << endl;
+        cout << "나이: " << GetAge() << endl;
+        if (GetGender() == 1) {
+            cout << "성별: 남자" << endl;
+        }
+        else if(GetGender() == 2) {
+            cout << "성별: 여자" << endl;
+        }
+        cout << "ID: " << m_ID << endl;
+        cout << "전공: " << m_Major << endl;
+    }
+    
+private:
+    int m_ID = 0;
+    char m_Major[16];
+};
+
+int main() {
+    CStudent s1;
+    s1.Set("쇠도리", 22, 1, 1000, "로봇 조종");
+    s1.Print();
+    
+    CStudent s2;
+    s2.Set("심청이", 18, 2, 1001, "왕비");
+    s2.Print();
+}
