@@ -8,12 +8,12 @@ struct Person {
         cout << "먹는다" << endl;
     }
 };
-struct Student : virtual Person {
+struct Student : virtual public Person {
     void Study(){
         cout << "공부한다" << endl;
     }
 };
-struct Worker : virtual Person {
+struct Worker : virtual public Person {
     void Work(){
         cout << "일한다" << endl;
     }
