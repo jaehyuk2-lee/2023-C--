@@ -1,0 +1,27 @@
+#include <iostream>
+using namespace std;
+
+class CParent {
+public:
+    virtual ~CParent() {};
+};
+
+class CChild : public CParent {
+public:
+    virtual ~CChild() {};
+};
+
+void CheckResult(CParent* obj){
+    if(dynamic_cast<CChild*>(obj)){
+        cout << "CC" << endl;
+    }
+    else cout << "CP" << endl;
+}
+
+int main() {
+    CParent p;
+    CChild c;
+    
+    CheckResult((CParent*)&p);
+    CheckResult((CParent*)&c);
+}
