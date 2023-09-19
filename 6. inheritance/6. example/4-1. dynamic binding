@@ -1,0 +1,33 @@
+#include <iostream>
+using namespace std;
+
+class CAnimal {
+public:
+    virtual const char* GetSound() = 0;
+};
+
+class CPig : public CAnimal {
+public:
+    const char* GetSound() {
+        return "꿀";
+    }
+};
+
+class CDog : public CAnimal {
+public:
+    const char* GetSound() {
+        return "멍";
+    }
+};
+
+void PrintSound(CAnimal* p) {
+    cout << p->GetSound() << endl;
+}
+
+int main() {
+    CPig* p1 = new CPig;
+    PrintSound(p1);
+    
+    CDog* p2 = new CDog;
+    PrintSound(p2);
+}
