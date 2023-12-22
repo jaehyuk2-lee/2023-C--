@@ -1,0 +1,25 @@
+#include <iostream>
+#include <string.h>
+using namespace std;
+
+int main() {
+	char S[101];
+	int alph[26];
+	for (int i = 0; i < 26; i++) {
+		alph[i] = -1;
+	}
+
+	cin >> S;
+	int len = strlen(S);
+	int cnt = 0;
+	for (int i = 0; i < len; i ++) {
+		int num = S[i] - 97;
+		if (alph[num] == -1) alph[num] = cnt;
+		cnt++;
+	}
+
+	for (int i = 0; i < 26; i++) {
+		cout << alph[i] << ' ';
+	}
+	cout << endl;
+}
