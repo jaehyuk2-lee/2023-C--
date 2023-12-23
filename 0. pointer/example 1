@@ -1,25 +1,24 @@
-// 사실 2차원 배열임 Cpp로 해봄 ㅋㅋ
+//2차원 배열에서 같은 행 합 구하기 2023.12.23
 #include <iostream>
 using namespace std;
 
 int main() {
-    int a;
-    int b;
-    int arr[11][11];
-    
-    cin >> a >> b;
-    
-    for (int i = 0; i < a; i++){
-        for(int j = 0; j < b; j++){
-            cin >> arr[i][j];
-        }
-    }
-    
-    for (int i = 0; i < a; i++){
-        arr[i][10] = 0;
-        for(int j = 0; j < b; j++){
-            arr[i][10] += arr[i][j];
-        }
-        cout << arr [i][10] << endl;
-    }
+	int a, b;
+	int arr[11][11];
+
+	cin >> a >> b;
+
+	for (int i = 0; i < a; i++) {
+		for (int j = 0; j < b; j++) {
+			cin >> arr[i][j];
+		}
+	}
+
+	for (int i = 0; i < a; i++) {
+		arr[i][10] = 0; //행 맨 마지막 칸에 저장
+		for (int j = 0; j < b; j++) {
+			arr[i][10] += arr[i][j];
+		}
+		cout << arr[i][10] << endl;
+	}
 }
