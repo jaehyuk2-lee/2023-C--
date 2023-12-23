@@ -1,31 +1,25 @@
-/* 두개의 문자열 s1, s2를 입력 받고,
-s1과 s2에 같은 index에 있는 문자들을 비교해
-같으면 O 다르면 X
-*/
-
+//입력받은 두개의 문자열 비교 2023.12.23
 #include <iostream>
-#include <cstring>
+#include <string.h>
 using namespace std;
 
 int main() {
-    char s1[30], s2[30];
-    cin >> s1;
-    cin >> s2;
-    int max_len = 0;
-    
-    if(strlen(s1) > strlen(s2)){
-        max_len = strlen(s1);
-    }
-    else max_len = strlen(s2);
-    
-    char *ps1 = s1;
-    char *ps2 = s2;
-    
-    cout << *ps1 + 4 << endl;
-    cout << *ps2 + 4 << endl;
-    
-    for(int i = 0; i < max_len; i++){
-        if(*(ps1+i) == *(ps2+i)) cout << 'O';
-        else cout << 'X';
-    }
+	char S1[30], S2[30];
+	cin >> S1;
+	cin >> S2;
+
+	int len1 = strlen(S1);
+	int len2 = strlen(S2);
+
+	if (len1 != len2) cout << 'X' << endl;
+	else {
+		for (int i = 0; i < len1; i++) {
+			if (S1[i] == S2[i]) continue;
+			else {
+				cout << 'X' << endl;
+				return 0;
+			}
+		}
+		cout << 'O' << endl;
+	}
 }
